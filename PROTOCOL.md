@@ -31,6 +31,9 @@ Let P = positive photos, A = accepted positive photos.
 - **Pipeline:** YOLOv8n detects the drug-name region → best box is cropped → TrOCR reads the crop → rapidfuzz match → threshold.
 - **Baseline (no detector):** TrOCR on the whole resized image → same rapidfuzz match → same threshold.
 - In both systems, if the detector finds nothing, or the match score is below the threshold, the output is **refused**.
+- Rotation (decided from the Kaggle data audit, where about one name box in five is taller than wide: 21.1 % in train after converting polygon labels to boxes):
+  TrOCR reads horizontal lines, so OCR is run on the image at 0°, 90° and 270°, and the reading with the best
+  matching score is kept. The pipeline does this on the crop, the baseline on the whole image: same rule for both.
 
 ## 5. Refusal threshold
 - Matching score: `rapidfuzz.fuzz.WRatio`, range 0–100.
