@@ -48,6 +48,10 @@ Let P = positive photos, A = accepted positive photos.
 - Data: Kaggle "Drug Name Detection" dataset, with its own train/val split. Our own photos are **never** used for training or for choosing YOLO settings.
 - **Data audit first** (notebook, Kaggle data only): licence, label format, class names, box sizes, image sizes, corrupted files, empty labels, exact duplicates between train and val.
   If exact duplicates are found between train and val, they are removed from val before training, and their number is reported.
+  The dataset comes from Roboflow: file names look like `<original>_jpg.rf.<hash>.jpg`. If images made from the same
+  `<original>` appear in two splits, those images are removed from valid and test (kept in train), and their number is reported.
+- **Kaggle test split** (182 images): never used for training or for choosing between run A and run B.
+  After the choice, the kept run is evaluated **once** on it, and its mAP@0.5 is reported next to the val value.
   If the labels do not mark the drug name, training stops and the plan is reviewed before any change.
 - **No offline image filters** (sharpening, edge/contour maps, denoising, retouching) on training images:
   an image must look the same at training time and at inference time. Only random training-time augmentation is used.
