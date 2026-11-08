@@ -224,3 +224,4 @@ __marimo__/
 kaggle.json
 *.pt
 runs/
+data/raw/
