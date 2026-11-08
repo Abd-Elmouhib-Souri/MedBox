@@ -225,3 +225,4 @@ kaggle.json
 *.pt
 runs/
 data/raw/
+!results/yolo/runs/
