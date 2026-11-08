@@ -24,6 +24,21 @@ Measured result: 1,756 unique official names → **1,639 trade names** in `data/
 
 Known side effect: a trade name that really ends with a number (for example a name like "X 3") also loses that number.
 
-## 2. Drug name detection images (YOLO training)
+## 2. Drug name detection images (YOLO training) — not committed, used on Kaggle only
 
-To be filled after the data audit on Kaggle (step 2a): URL, version, licence, number of images, label format.
+| Field | Value |
+|---|---|
+| Source used | Kaggle, "The Drug Name Detection Dataset" by Parisa Karimi Darabi |
+| URL | https://www.kaggle.com/datasets/pkdarabi/the-drug-name-detection-dataset |
+| Original source (from its `data.yaml`) | Roboflow, workspace `kabul-university-evptq`, project `drug-name-detection`, version 2: https://universe.roboflow.com/kabul-university-evptq/drug-name-detection/dataset/2 |
+| Licence | CC BY 4.0 (Kaggle page and `data.yaml`) |
+| Content | 1,823 images, all 640×640 — train 1,276 · valid 365 · test 182 — one class: `drug-name` |
+| Label format | YOLO text files; 14 % of the label rows are polygons, not boxes (train 182/1,277). Ultralytics converts them to boxes. |
+| Leakage check | 0 images from the same original photo in two splits; 0 identical files across splits (`results/yolo/audit.json`) |
+
+Not modified. The trained weights (`weights/best.pt`) are a derivative work of this dataset; attribution above (CC BY 4.0).
+
+## 3. Considered and not used
+
+- **PharmAI** (Mendeley Data, DOI 10.17632/sdfcbmjfnd.2): no bounding boxes (images are sorted by first letter only),
+  and its "augmented" folder is derived from the originals, which would leak between splits. The protocol does not fine-tune OCR.

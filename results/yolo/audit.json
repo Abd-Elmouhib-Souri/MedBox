@@ -1,0 +1,113 @@
+{
+  "train": {
+    "images": 1276,
+    "labels_missing": 0,
+    "labels_empty": 2,
+    "boxes": 1277,
+    "classes": {
+      "0": 1277
+    },
+    "bad_coordinates": 0,
+    "boxes_per_image_max": 2,
+    "box_w_q05_q50_q95": [
+      0.0399,
+      0.2922,
+      0.7665
+    ],
+    "box_h_q05_q50_q95": [
+      0.025,
+      0.1078,
+      0.469
+    ],
+    "box_area_q05_q50_q95": [
+      0.0035,
+      0.0238,
+      0.1824
+    ],
+    "boxes_area_below_1pct": 285,
+    "boxes_taller_than_wide_px": 354,
+    "top_image_sizes": [
+      [
+        "640x640",
+        1276
+      ]
+    ]
+  },
+  "valid": {
+    "images": 365,
+    "labels_missing": 0,
+    "labels_empty": 2,
+    "boxes": 364,
+    "classes": {
+      "0": 364
+    },
+    "bad_coordinates": 0,
+    "boxes_per_image_max": 2,
+    "box_w_q05_q50_q95": [
+      0.043,
+      0.2957,
+      0.6776
+    ],
+    "box_h_q05_q50_q95": [
+      0.0242,
+      0.1082,
+      0.4982
+    ],
+    "box_area_q05_q50_q95": [
+      0.0036,
+      0.0231,
+      0.1787
+    ],
+    "boxes_area_below_1pct": 82,
+    "boxes_taller_than_wide_px": 92,
+    "top_image_sizes": [
+      [
+        "640x640",
+        365
+      ]
+    ]
+  },
+  "test": {
+    "images": 182,
+    "labels_missing": 0,
+    "labels_empty": 0,
+    "boxes": 182,
+    "classes": {
+      "0": 182
+    },
+    "bad_coordinates": 0,
+    "boxes_per_image_max": 1,
+    "box_w_q05_q50_q95": [
+      0.041,
+      0.2777,
+      0.6638
+    ],
+    "box_h_q05_q50_q95": [
+      0.0259,
+      0.1094,
+      0.4999
+    ],
+    "box_area_q05_q50_q95": [
+      0.0041,
+      0.0242,
+      0.1935
+    ],
+    "boxes_area_below_1pct": 41,
+    "boxes_taller_than_wide_px": 49,
+    "top_image_sizes": [
+      [
+        "640x640",
+        182
+      ]
+    ]
+  },
+  "leak_same_original_train_valid": 0,
+  "leak_identical_file_train_valid": 0,
+  "leak_same_original_train_test": 0,
+  "leak_identical_file_train_test": 0,
+  "leak_same_original_valid_test": 0,
+  "leak_identical_file_valid_test": 0,
+  "train_unique_originals": 1275,
+  "valid_unique_originals": 365,
+  "test_unique_originals": 182
+}

@@ -1,0 +1,7 @@
+names:
+- drug-name
+nc: 1
+path: /kaggle/input/datasets/pkdarabi/the-drug-name-detection-dataset
+test: test/images
+train: train/images
+val: valid/images
