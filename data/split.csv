@@ -1,0 +1,20 @@
+split,kind,true_name,photo
+dev,box,LOSAR,d01.jpg
+dev,box,HYTACAND,d02.jpg
+dev,box,DIARESTOP,d03.jpg
+dev,negative,NONE,dn1.jpg (cereal box)
+dev,negative,NONE,dn2.jpg (juice carton)
+test,box,MOTILIUM,t01.jpg
+test,box,NEAFORGE,t02.jpg
+test,box,KLAROMIN,t03.jpg
+test,box,SPASTOP,t04.jpg
+test,box,DIFLUZOL,t05.jpg
+test,box,DUOFOR,t06.jpg
+test,box,AMLOVAR,t07.jpg
+test,box,ATOR,t08.jpg
+test,box,SMECTA,t09.jpg
+test,negative,NONE,tn1.jpg (soap box)
+test,negative,NONE,tn2.jpg (coffee capsule box)
+test,negative,NONE,tn3.jpg (toothpaste box)
+test,negative,NONE,tn4.jpg (biscuit pack)
+test,negative,NONE,tn5.jpg (tea box)

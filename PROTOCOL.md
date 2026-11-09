@@ -22,6 +22,10 @@ If a rule must change, the change is a new commit, it is explained in the README
 - **Test:** 20–30 **other** medicine boxes (never a box used in dev) + 3–5 negative photos.
 - Test photos and `test_truth.csv` are frozen with SHA-256 (`data/test_manifest.sha256`) and committed **before** any threshold is tuned.
 - Privacy: no prescription, no name, no address, no face in the frame. EXIF metadata is removed before commit.
+- Photo processing, identical for dev and test (`tools/strip_exif.py`): EXIF orientation applied to the pixels,
+  longest side reduced to at most 2048 px, saved as JPEG (quality 95) without any metadata. Originals stay local.
+- Photo-taking rule: one photo per object, phone camera, normal home light, the way a user would take it.
+  A photo is retaken only if a human cannot read the trade name on it (decided before any system output is seen).
 
 ### Deviation (decided 2026-11-09, before any own photo was taken)
 - Fewer boxes are available than planned (boxes physically owned, trade name present in `data/drugs_tn.csv`).
