@@ -1,0 +1,531 @@
+{
+  "date_utc": "2026-11-09T22:16:37+00:00",
+  "git_commit": "3a35c59a7d7780b1b2a8dd2662903b9a325b06ae",
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "ultralytics": "8.4.207",
+    "transformers": "5.22.2",
+    "rapidfuzz": "3.14.6"
+  },
+  "threshold": 91,
+  "test_set": "14 web-collected images (9 boxes + 5 negatives), not own photos (PROTOCOL.md, deviation 2)",
+  "decision_rules": {
+    "yolo_useful": "undefined (a precision has n = 0)",
+    "demo_publishable": true
+  },
+  "pipeline": {
+    "metrics": {
+      "top1_precision": {
+        "k": 0,
+        "n": 0,
+        "value": null,
+        "ci95": null,
+        "text": "undefined (n = 0)"
+      },
+      "coverage": {
+        "k": 0,
+        "n": 9,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.2992
+        ],
+        "text": "0/9 (95% CI 0.00-0.30)"
+      },
+      "wrong_accepts": {
+        "count": 0,
+        "k": 0,
+        "n": 14,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.2153
+        ],
+        "text": "0/14 (95% CI 0.00-0.22)"
+      },
+      "negatives_refused": {
+        "k": 5,
+        "n": 5,
+        "value": 1.0,
+        "ci95": [
+          0.5655,
+          1.0
+        ],
+        "text": "5/5 (95% CI 0.57-1.00)"
+      }
+    },
+    "rows": [
+      {
+        "file": "t01.jpg",
+        "true_name": "MOTILIUM",
+        "status": "ok",
+        "reason": null,
+        "name": "DOMPER",
+        "candidate": "DOMPER",
+        "score": 90.0,
+        "ocr_text": "DOMPERIDONE",
+        "box": [
+          819.8,
+          761.2,
+          1123.1,
+          834.1
+        ],
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t02.jpg",
+        "true_name": "NEAFORGE",
+        "status": "ok",
+        "reason": null,
+        "name": "BIFOR10",
+        "candidate": "BIFOR10",
+        "score": 90.0,
+        "ocr_text": "1",
+        "box": [
+          129.9,
+          58.1,
+          162.6,
+          72.1
+        ],
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t03.jpg",
+        "true_name": "KLAROMIN",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "t04.jpg",
+        "true_name": "SPASTOP",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "t05.jpg",
+        "true_name": "DIFLUZOL",
+        "status": "ok",
+        "reason": null,
+        "name": "FAMO",
+        "candidate": "FAMO",
+        "score": 77.14,
+        "ocr_text": "AMOUNT",
+        "box": [
+          73.8,
+          68.9,
+          127.7,
+          86.0
+        ],
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t06.jpg",
+        "true_name": "DUOFOR",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "t07.jpg",
+        "true_name": "AMLOVAR",
+        "status": "ok",
+        "reason": null,
+        "name": "FAMO",
+        "candidate": "FAMO",
+        "score": 77.14,
+        "ocr_text": "AMOUNT :",
+        "box": [
+          87.0,
+          207.1,
+          171.3,
+          230.5
+        ],
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t08.jpg",
+        "true_name": "ATOR",
+        "status": "ok",
+        "reason": null,
+        "name": "FAMO",
+        "candidate": "FAMO",
+        "score": 77.14,
+        "ocr_text": "AMOUNTMENT",
+        "box": [
+          97.0,
+          129.3,
+          143.0,
+          139.4
+        ],
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t09.jpg",
+        "true_name": "SMECTA",
+        "status": "ok",
+        "reason": null,
+        "name": "SMECTITE",
+        "candidate": "SMECTITE",
+        "score": 82.35,
+        "ocr_text": "DISMETITE",
+        "box": [
+          211.2,
+          148.4,
+          305.6,
+          177.6
+        ],
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "tn1.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "XATRAL",
+        "candidate": "XATRAL",
+        "score": 75.0,
+        "ocr_text": "-JABON NATURAL-",
+        "box": [
+          154.2,
+          336.7,
+          292.9,
+          362.6
+        ],
+        "rotation": 0,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn2.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn3.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn4.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn5.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      }
+    ]
+  },
+  "baseline": {
+    "metrics": {
+      "top1_precision": {
+        "k": 0,
+        "n": 0,
+        "value": null,
+        "ci95": null,
+        "text": "undefined (n = 0)"
+      },
+      "coverage": {
+        "k": 0,
+        "n": 9,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.2992
+        ],
+        "text": "0/9 (95% CI 0.00-0.30)"
+      },
+      "wrong_accepts": {
+        "count": 0,
+        "k": 0,
+        "n": 14,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.2153
+        ],
+        "text": "0/14 (95% CI 0.00-0.22)"
+      },
+      "negatives_refused": {
+        "k": 5,
+        "n": 5,
+        "value": 1.0,
+        "ci95": [
+          0.5655,
+          1.0
+        ],
+        "text": "5/5 (95% CI 0.57-1.00)"
+      }
+    },
+    "rows": [
+      {
+        "file": "t01.jpg",
+        "true_name": "MOTILIUM",
+        "status": "ok",
+        "reason": null,
+        "name": "ACTAPULGITE",
+        "candidate": "ACTAPULGITE",
+        "score": 77.14,
+        "ocr_text": "ITEM",
+        "box": null,
+        "rotation": 270,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t02.jpg",
+        "true_name": "NEAFORGE",
+        "status": "ok",
+        "reason": null,
+        "name": "ABILIFY",
+        "candidate": "ABILIFY",
+        "score": 90.0,
+        "ocr_text": "A",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t03.jpg",
+        "true_name": "KLAROMIN",
+        "status": "ok",
+        "reason": null,
+        "name": "THIAMAZOLE UNI-PHARMA",
+        "candidate": "THIAMAZOLE UNI-PHARMA",
+        "score": 72.0,
+        "ocr_text": "KARMAN",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t04.jpg",
+        "true_name": "SPASTOP",
+        "status": "ok",
+        "reason": null,
+        "name": "ABBOTICINE",
+        "candidate": "ABBOTICINE",
+        "score": 90.0,
+        "ocr_text": "IN",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t05.jpg",
+        "true_name": "DIFLUZOL",
+        "status": "ok",
+        "reason": null,
+        "name": "ABILIFY",
+        "candidate": "ABILIFY",
+        "score": 90.0,
+        "ocr_text": "L",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t06.jpg",
+        "true_name": "DUOFOR",
+        "status": "ok",
+        "reason": null,
+        "name": "EOLIDE EASY FLOW",
+        "candidate": "EOLIDE EASY FLOW",
+        "score": 90.0,
+        "ocr_text": "LOW",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t07.jpg",
+        "true_name": "AMLOVAR",
+        "status": "ok",
+        "reason": null,
+        "name": "BIFOR10",
+        "candidate": "BIFOR10",
+        "score": 90.0,
+        "ocr_text": "1",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t08.jpg",
+        "true_name": "ATOR",
+        "status": "ok",
+        "reason": null,
+        "name": "ACETAZOLAMIDE",
+        "candidate": "ACETAZOLAMIDE",
+        "score": 90.0,
+        "ocr_text": "LAM",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "t09.jpg",
+        "true_name": "SMECTA",
+        "status": "ok",
+        "reason": null,
+        "name": "ACTAPULGITE",
+        "candidate": "ACTAPULGITE",
+        "score": 90.0,
+        "ocr_text": "AP",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "tn1.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "BIFOR10",
+        "candidate": "BIFOR10",
+        "score": 90.0,
+        "ocr_text": "0",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn2.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "ACARLYSE",
+        "candidate": "ACARLYSE",
+        "score": 90.0,
+        "ocr_text": "R",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn3.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "CLIMASTON",
+        "candidate": "CLIMASTON",
+        "score": 90.0,
+        "ocr_text": "MAS",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn4.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "ALBUNORM",
+        "candidate": "ALBUNORM",
+        "score": 90.0,
+        "ocr_text": "(RM)",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "tn5.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "ACTHEANE",
+        "candidate": "ACTHEANE",
+        "score": 90.0,
+        "ocr_text": "THE",
+        "box": null,
+        "rotation": 270,
+        "accepted": false,
+        "error": null
+      }
+    ]
+  }
+}
