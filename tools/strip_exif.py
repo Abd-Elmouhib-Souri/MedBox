@@ -3,8 +3,8 @@
 Usage (from the repo root):
     python -m tools.strip_exif
 
-Input : data/raw/photos/<name>.jpg   (originals, ignored by Git, never committed)
-        names must be the ones given by data/split.csv: d01.jpg, dn1.jpg, t01.jpg, tn1.jpg ...
+Input : data/raw/photos/<stem>.<jpg|jpeg|png>   (originals, ignored by Git, never committed)
+        stems must be the ones given by data/split.csv: d01, dn1, t01, tn1 ... (any of these extensions)
 Output: data/dev/<name>.jpg and data/test/<name>.jpg   (clean copies, these are committed)
 
 What it does for each photo:
@@ -33,8 +33,10 @@ def main() -> None:
     split = pd.read_csv(SPLIT_CSV)
     expected = {file_name(p): s for p, s in zip(split["photo"], split["split"])}   # name -> dev/test
 
-    missing = [n for n in expected if not (RAW_DIR / n).exists()]
-    extra = sorted(p.name for p in RAW_DIR.glob("*") if p.is_file() and p.name not in expected)
+    exts = (".jpg", ".jpeg", ".png")
+    found = {p.stem.lower(): p for p in RAW_DIR.iterdir() if p.suffix.lower() in exts}   # d01 -> data/raw/photos/d01.png
+    missing = [n for n in expected if Path(n).stem not in found]
+    extra = sorted(p.name for s, p in found.items() if s + ".jpg" not in expected)
     if missing:
         raise SystemExit(f"Missing photos in {RAW_DIR}: {missing}")
     if extra:
@@ -43,7 +45,7 @@ def main() -> None:
     for name, split_name in sorted(expected.items()):
         out_dir = Path("data") / split_name
         out_dir.mkdir(parents=True, exist_ok=True)
-        with Image.open(RAW_DIR / name) as im:
+        with Image.open(found[Path(name).stem]) as im:
             im = ImageOps.exif_transpose(im)               # 1. rotate pixels as the phone intended
             im = im.convert("RGB")                         # drop alpha / palette modes
             im.thumbnail((MAX_SIDE, MAX_SIDE))             # 2. longest side <= 2048, keeps the ratio

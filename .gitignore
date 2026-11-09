@@ -226,3 +226,5 @@ kaggle.json
 runs/
 data/raw/
 !results/yolo/runs/
+data/dev/*.jpg
+data/test/*.jpg

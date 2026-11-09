@@ -39,6 +39,18 @@ If a rule must change, the change is a new commit, it is explained in the README
   percentage alone.
 - One photo per box (photos of the same box are not independent).
 
+### Deviation 2 (decided 2026-11-09, before any system output on these images)
+- **No own phone photos are used.** The dev and test images are images **collected from the web and screenshots**
+  (cropped from a few larger photos). Checked with EXIF: none comes from the author's phone.
+- Consequences, stated in advance: the images are cleaner than real phone photos (often studio-like or already
+  cropped around the box), so the results are **not representative of real use**; some images may also exist online,
+  so a pretrained model may have seen them. Results are reported as a **pilot on web-collected images**.
+- The images are **not redistributed** (copyright). They stay on the author's computer. Only the ground truth and
+  the SHA-256 manifest are committed, so the final run still refuses to start if any image changed.
+- Selection rule for each name drawn in `data/split.csv`: the **lowest-numbered** file (`medN` / `negN`) that shows
+  that product **alone**; written in `data/image_map.csv` and committed before any OCR or matching code is run.
+- The tool `tools/strip_exif.py` is still applied (same orientation, size and JPEG rules for every image).
+
 ## 3. Metrics (on the test set)
 Let P = positive photos, A = accepted positive photos.
 - **Top-1 precision:** correct names among accepted positive photos (x / A).
