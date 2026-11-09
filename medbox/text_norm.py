@@ -7,11 +7,11 @@ are always compared in the same normalized form.
 import re
 import unicodedata
 
-# A "dosage token" is a number, optionally with a unit, optionally a ratio: 50, 500MG, 1G, 2.5, 100/25, 5%, 1000UI
+# A "dosage token" is a number, optionally with a unit, optionally a ratio: 50, 500MG, 1G, 2.5, 100/25, 5%, 1000UI, 10MG/ML
 _DOSAGE_TOKEN = re.compile(
-    r"^\d+([.,]\d+)?(MG|G|ML|UI|MCG|UG|%)?(/\d+([.,]\d+)?(MG|G|ML|UI|MCG|UG|%)?)?$"
+    r"^\d+([.,]\d+)?(MG|G|ML|UI|MCG|UG|%)?(/(\d+([.,]\d+)?)?(MG|G|ML|UI|MCG|UG|%)?)?$"
 )
-_UNITS = {"MG", "G", "ML", "UI", "MCG", "UG", "%"}               # a unit written as its own token
+_UNIT_TOKEN = re.compile(r"^(MG|G|ML|UI|MCG|UG|%)(/(MG|G|ML|UI|MCG|UG|%))?$")  # unit as its own token: MG, MG/ML
 
 
 def normalize(text: str) -> str:
@@ -35,7 +35,7 @@ def base_name(text: str) -> str:
     while len(tokens) > 1:                                          # strip from the end only
         if _DOSAGE_TOKEN.match(tokens[-1]):                         # "50", "500MG", "20/12,5"
             tokens.pop()
-        elif (len(tokens) > 2 and tokens[-1] in _UNITS
+        elif (len(tokens) > 2 and _UNIT_TOKEN.match(tokens[-1])
               and _DOSAGE_TOKEN.match(tokens[-2])):                 # "2.5 MG": number and unit split by a space
             del tokens[-2:]
         else:

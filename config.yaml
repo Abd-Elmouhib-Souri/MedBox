@@ -1,0 +1,14 @@
+# MedBox Reader configuration. Every value here is fixed before the dev run, except `threshold`,
+# which is written ONCE by `python -m medbox.evaluate --dev` (rule in PROTOCOL.md, section 5).
+
+weights: weights/best.pt                    # YOLOv8n, run B (results/yolo/yolo_results.json)
+ocr_model: microsoft/trocr-base-printed     # Hugging Face TrOCR, used as is (no fine-tuning)
+drug_list: data/drugs_tn.csv                # closed list: 2,160 trade names (data/SOURCES.md)
+
+yolo_conf: 0.25          # Ultralytics default confidence for predictions
+crop_pad: 0.05           # crop = detected box enlarged by 5 % on each side (letters at the edge are kept)
+rotations: [0, 90, 270]  # OCR is run on each rotation; the best matching score is kept (PROTOCOL.md, section 4)
+short_name_max_len: 3    # names of 3 characters or less are accepted only on an exact match
+max_new_tokens: 32       # TrOCR output length limit (a drug name is short)
+
+threshold: null          # set by `python -m medbox.evaluate --dev`, then never changed
