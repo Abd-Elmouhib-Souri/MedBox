@@ -11,4 +11,4 @@ rotations: [0, 90, 270]  # OCR is run on each rotation; the best matching score 
 short_name_max_len: 3    # names of 3 characters or less are accepted only on an exact match
 max_new_tokens: 32       # TrOCR output length limit (a drug name is short)
 
-threshold: null          # set by `python -m medbox.evaluate --dev`, then never changed
+threshold: 91          # set by `python -m medbox.evaluate --dev`, then never changed

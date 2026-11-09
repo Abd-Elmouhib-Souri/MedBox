@@ -1,0 +1,653 @@
+{
+  "date_utc": "2026-11-09T22:12:01+00:00",
+  "git_commit": "0d918dc8ebe06c7e518ec8f9c918ef4d2559dbda",
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "ultralytics": "8.4.207",
+    "transformers": "5.22.2",
+    "rapidfuzz": "3.14.6"
+  },
+  "chosen_threshold": 91,
+  "rule_applied": "smallest threshold with 0 wrong accepts on dev",
+  "pipeline_rows": [
+    {
+      "file": "d01.jpg",
+      "true_name": "LOSAR",
+      "status": "refused",
+      "reason": "no_detection",
+      "name": null,
+      "candidate": null,
+      "score": 0.0,
+      "ocr_text": "",
+      "box": null,
+      "rotation": null
+    },
+    {
+      "file": "d02.jpg",
+      "true_name": "HYTACAND",
+      "status": "refused",
+      "reason": "no_detection",
+      "name": null,
+      "candidate": null,
+      "score": 0.0,
+      "ocr_text": "",
+      "box": null,
+      "rotation": null
+    },
+    {
+      "file": "d03.jpg",
+      "true_name": "DIARESTOP",
+      "status": "ok",
+      "reason": null,
+      "name": "BIFOR10",
+      "candidate": "BIFOR10",
+      "score": 90.0,
+      "ocr_text": "1",
+      "box": [
+        39.4,
+        43.3,
+        79.2,
+        66.1
+      ],
+      "rotation": 90
+    },
+    {
+      "file": "dn1.jpg",
+      "true_name": "NONE",
+      "status": "ok",
+      "reason": null,
+      "name": "DIPIPERON",
+      "candidate": "DIPIPERON",
+      "score": 81.82,
+      "ocr_text": "PERSON",
+      "box": [
+        85.4,
+        22.5,
+        184.8,
+        61.3
+      ],
+      "rotation": 270
+    },
+    {
+      "file": "dn2.jpg",
+      "true_name": "NONE",
+      "status": "refused",
+      "reason": "no_detection",
+      "name": null,
+      "candidate": null,
+      "score": 0.0,
+      "ocr_text": "",
+      "box": null,
+      "rotation": null
+    }
+  ],
+  "baseline_rows": [
+    {
+      "file": "d01.jpg",
+      "true_name": "LOSAR",
+      "status": "ok",
+      "reason": null,
+      "name": "KETAXOL",
+      "candidate": "KETAXOL",
+      "score": 90.0,
+      "ocr_text": "TAX",
+      "box": null,
+      "rotation": 270
+    },
+    {
+      "file": "d02.jpg",
+      "true_name": "HYTACAND",
+      "status": "ok",
+      "reason": null,
+      "name": "ARNICA COMPLEXE N",
+      "candidate": "ARNICA COMPLEXE N",
+      "score": 90.0,
+      "ocr_text": "PLE",
+      "box": null,
+      "rotation": 90
+    },
+    {
+      "file": "d03.jpg",
+      "true_name": "DIARESTOP",
+      "status": "ok",
+      "reason": null,
+      "name": "ABILIFY",
+      "candidate": "ABILIFY",
+      "score": 90.0,
+      "ocr_text": "L",
+      "box": null,
+      "rotation": 0
+    },
+    {
+      "file": "dn1.jpg",
+      "true_name": "NONE",
+      "status": "ok",
+      "reason": null,
+      "name": "FAMO",
+      "candidate": "FAMO",
+      "score": 77.14,
+      "ocr_text": "AMOUNT",
+      "box": null,
+      "rotation": 90
+    },
+    {
+      "file": "dn2.jpg",
+      "true_name": "NONE",
+      "status": "ok",
+      "reason": null,
+      "name": "BECLO-ASMA",
+      "candidate": "BECLO-ASMA",
+      "score": 90.0,
+      "ocr_text": "BE",
+      "box": null,
+      "rotation": 90
+    }
+  ],
+  "sweep": [
+    {
+      "threshold": 0,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 1,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 2,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 3,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 4,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 5,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 6,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 7,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 8,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 9,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 10,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 11,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 12,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 13,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 14,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 15,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 16,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 17,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 18,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 19,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 20,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 21,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 22,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 23,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 24,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 25,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 26,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 27,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 28,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 29,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 30,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 31,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 32,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 33,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 34,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 35,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 36,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 37,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 38,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 39,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 40,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 41,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 42,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 43,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 44,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 45,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 46,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 47,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 48,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 49,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 50,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 51,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 52,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 53,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 54,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 55,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 56,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 57,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 58,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 59,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 60,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 61,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 62,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 63,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 64,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 65,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 66,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 67,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 68,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 69,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 70,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 71,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 72,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 73,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 74,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 75,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 76,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 77,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 78,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 79,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 80,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 81,
+      "wrong_accepts": 2,
+      "accepted": 2
+    },
+    {
+      "threshold": 82,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 83,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 84,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 85,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 86,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 87,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 88,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 89,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 90,
+      "wrong_accepts": 1,
+      "accepted": 1
+    },
+    {
+      "threshold": 91,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 92,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 93,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 94,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 95,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 96,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 97,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 98,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 99,
+      "wrong_accepts": 0,
+      "accepted": 0
+    },
+    {
+      "threshold": 100,
+      "wrong_accepts": 0,
+      "accepted": 0
+    }
+  ]
+}
