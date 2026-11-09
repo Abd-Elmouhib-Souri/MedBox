@@ -4,7 +4,8 @@ Usage (from the repo root):
     python -m tools.fetch_data
 
 What it does:
-    1. Downloads the Kaggle dataset "les-medicaments-en-tunisie" into data/raw/ (ignored by Git).
+    1. Downloads the Kaggle dataset "les-medicaments-en-tunisie" into data/raw/ (ignored by Git), and the
+       closed list actually used (Pharma Tunisie, github.com/ballouchi/medoc, file js/latest.json, pinned commit).
     2. Prints the SHA-256 of every downloaded file (to copy into data/SOURCES.md).
     3. Prints the shape, the columns and the first rows of every CSV file,
        so we can decide how to build data/drugs_tn.csv from REAL columns, not guessed ones.
@@ -21,6 +22,12 @@ import pandas as pd                 # read the CSV to inspect columns (installed
 # --- Settings ---------------------------------------------------------------------------
 KAGGLE_SLUG = "skanderkammoun/les-medicaments-en-tunisie"   # owner/dataset on kaggle.com
 RAW_DIR = Path("data/raw/medicaments_tn")                     # raw files stay local, never committed
+
+# Closed list used by MedBox (decided in PROTOCOL.md): pinned to one commit, so the content cannot change
+MEDOC_COMMIT = "b03f9d97856b405c136fee5a5e01944b98d46c14"      # ballouchi/medoc, gh-pages, 2026-11-03
+MEDOC_URL = f"https://raw.githubusercontent.com/ballouchi/medoc/{MEDOC_COMMIT}/js/latest.json"
+MEDOC_SHA256 = "c4f9c895ca032d23aa598198f5a39ad8a9018a9739a0b4fed0af38a54f972964"
+MEDOC_FILE = Path("data/raw/medoc/latest.json")
 
 
 def sha256_of(path: Path) -> str:
@@ -42,6 +49,18 @@ def download() -> None:
     RAW_DIR.mkdir(parents=True, exist_ok=True)                # create data/raw/... if missing
     api.dataset_download_files(KAGGLE_SLUG, path=str(RAW_DIR), unzip=True)
     print(f"Downloaded {KAGGLE_SLUG} -> {RAW_DIR}")
+
+
+def download_medoc() -> None:
+    """Download latest.json at the pinned commit and check its SHA-256 (refuse a different file)."""
+    import urllib.request
+
+    MEDOC_FILE.parent.mkdir(parents=True, exist_ok=True)
+    urllib.request.urlretrieve(MEDOC_URL, MEDOC_FILE)        # plain HTTPS download, no code is run
+    got = sha256_of(MEDOC_FILE)
+    if got != MEDOC_SHA256:
+        raise SystemExit(f"SHA-256 mismatch for {MEDOC_FILE}: got {got}, expected {MEDOC_SHA256}")
+    print(f"Downloaded medoc latest.json @ {MEDOC_COMMIT[:7]} -> {MEDOC_FILE} (SHA-256 OK)")
 
 
 def inspect() -> None:
@@ -70,3 +89,4 @@ def inspect() -> None:
 if __name__ == "__main__":
     download()
     inspect()
+    download_medoc()

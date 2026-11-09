@@ -6,6 +6,11 @@ If a rule must change, the change is a new commit, it is explained in the README
 
 ## 1. Unit of evaluation
 - One photo = one unit.
+- Closed list (decided 2026-11-09, **before** checking which owned boxes it contains): the Pharma Tunisie list,
+  github.com/ballouchi/medoc, file `js/latest.json` at commit `b03f9d9` (prices published 2026-10-27), Apache 2.0.
+  It replaces the Kaggle list "les-medicaments-en-tunisie" (Apache 2.0, last updated about two years earlier),
+  which has the same 7 columns and is probably an older copy of it. Criteria: more recent, more complete
+  (4,127 rows vs 3,245; 2,160 trade names vs 1,639), original source, open licence.
 - Ground truth: `data/test_truth.csv` with columns `file,true_name`.
   - `true_name` is the exact name from `data/drugs_tn.csv` (unique trade name, no dosage).
   - `true_name = NONE` for negative photos (not a medicine).
@@ -17,6 +22,18 @@ If a rule must change, the change is a new commit, it is explained in the README
 - **Test:** 20–30 **other** medicine boxes (never a box used in dev) + 3–5 negative photos.
 - Test photos and `test_truth.csv` are frozen with SHA-256 (`data/test_manifest.sha256`) and committed **before** any threshold is tuned.
 - Privacy: no prescription, no name, no address, no face in the frame. EXIF metadata is removed before commit.
+
+### Deviation (decided 2026-11-09, before any own photo was taken)
+- Fewer boxes are available than planned (boxes physically owned, trade name present in `data/drugs_tn.csv`).
+  The planned sizes (about 10 dev boxes, 20–30 test boxes) cannot be met.
+- New sizes, fixed before knowing the final number N of eligible boxes:
+  **dev = 3 boxes + 2 negatives**, **test = all other eligible boxes (N − 3) + the other negatives (5)**.
+- Assignment is random, not chosen by hand: eligible names sorted alphabetically, shuffled with `random.Random(42)`,
+  first 3 to dev, the rest to test (`python -m tools.split_dev_test`, output `data/split.csv`). Same rule for negatives.
+- Consequence, stated in advance: this is a **pilot-scale** evaluation. With about 10 test boxes, the 95 % Wilson
+  intervals are very wide, and no general accuracy claim is made. Results are reported as counts (x / n), never as a
+  percentage alone.
+- One photo per box (photos of the same box are not independent).
 
 ## 3. Metrics (on the test set)
 Let P = positive photos, A = accepted positive photos.
@@ -37,6 +54,8 @@ Let P = positive photos, A = accepted positive photos.
 
 ## 5. Refusal threshold
 - Matching score: `rapidfuzz.fuzz.WRatio`, range 0–100.
+- Short names: trade names of **3 characters or less** (5 in the list used: `LRJ`, `MAG`, `MP`, `T`, `VAL`) get high
+  partial-match scores against unrelated text. They are accepted **only on an exact match** (normalized OCR text equal to the name).
 - Sweep on **dev only**, integer thresholds from 0 to 100 (step 1). A photo is accepted if `score >= threshold`.
 - Rule: choose the **smallest threshold that gives 0 wrong accepts on dev** (pipeline system).
 - If no threshold gives 0 wrong accepts, the threshold is set to 100 and this is reported.

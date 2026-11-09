@@ -1,4 +1,7 @@
-"""Build data/drugs_tn.csv (closed list for fuzzy matching) from the raw Kaggle CSV.
+"""Build data/drugs_tn.csv (closed list for fuzzy matching) from the Pharma Tunisie list (medoc latest.json).
+
+Source decided in PROTOCOL.md: github.com/ballouchi/medoc, js/latest.json, pinned commit (see tools/fetch_data.py).
+Each row of latest.json: [name, form, dosage, presentation, price, reimbursed, DCI]. Only the name is used.
 
 Usage (from the repo root):
     python -m tools.build_drug_list
@@ -10,19 +13,21 @@ Why a "base name":
     So we match at trade-name level: the dosage at the end of the name is removed.
 """
 
+import json
 from pathlib import Path
 
 import pandas as pd
 
 from medbox.text_norm import base_name, normalize   # same functions as the matcher
 
-RAW_CSV = Path("data/raw/medicaments_tn/medicine_data_tn.csv")
+RAW_JSON = Path("data/raw/medoc/latest.json")
 OUT_CSV = Path("data/drugs_tn.csv")
 
 
 def main() -> None:
-    df = pd.read_csv(RAW_CSV)
-    names = df["Name"].dropna().astype(str).str.strip()          # official names, one per row
+    rows = json.loads(RAW_JSON.read_text(encoding="utf-8"))["data"]   # list of lists (read as data only)
+    df = pd.DataFrame(rows)
+    names = df[0].dropna().astype(str).str.strip()               # column 0 = official name, one per row
 
     table = pd.DataFrame({"official": names})
     table["normalized"] = table["official"].map(normalize)       # case/accents/spaces removed
