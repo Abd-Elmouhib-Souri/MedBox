@@ -138,6 +138,36 @@ the baseline (`candidate` field in `results/final_test.json`). A lower threshold
 
 ---
 
+## Field test on own phone photos (v1.1)
+
+Added after v1.0, with rules committed before the run (`PROTOCOL.md` §10, commits `e60bcaa` and `6a522b0`).
+13 photos taken with my phone at home (boxes held in the hand, fridge light), sent through WhatsApp (900 × 1600 px).
+The system was **not changed**: same weights, same list, same threshold 91. Run once (`python -m medbox.evaluate --field`).
+3 more photos were excluded by the rules written before the run (2 names printed only in Arabic, 1 ambiguous variant).
+
+| Photo | Truth | Pipeline: what happened |
+|---|---|---|
+| 5 of 8 boxes (Clamoxyl, Uciderm Plus, Allergica, Maxilase, Inflamyl) | in the list | **no box detected** → refused |
+| Smecta | SMECTA | box on the **generic name line**, read `PLOSMECUTE 3 9-LON BUVEBLE` (= "diosmectite 3 g … buvable") → refused |
+| Urpex | URPEX | box on the **generic name line**, read `ACICLOVIR 6%` → closest name `ACICLOVIR OPALIA` (another laboratory's product), score 90 → **refused** |
+| Belifax | BELIFAX | box on the **generic name line**, read `OMERVABWO` (≈ "omeprazole") → refused |
+| 5 products not in the list | NONE | 5/5 refused (4 no detection, 1 read `ANGING OPEND NO.` → score 75) |
+
+**What the field test confirms (now on real photos):**
+
+1. **The label bias is the main failure.** When the detector finds a box (3 of 8 boxes), it is **always the generic
+   name line**, never the brand. On Urpex, OCR read the molecule correctly and the closest list entry was a product of
+   another laboratory: a lower threshold (90) would have produced a **confident wrong medicine**. The refusal rule stopped it.
+2. **Larger images were not enough.** The photos are about 20 times larger than the web pilot images, but the detector
+   still found no name region on 5 of 8 boxes. Probable causes (not measured): brand names in large stylized fonts
+   that differ from the training labels, and boxes photographed at an angle in the hand.
+3. **The detector protects against fragments.** Without it (baseline), TrOCR reads short pieces of the whole box
+   (`TAX`, `PAX`, `MAR`) that score exactly 90. One reading was the single letter `T`, which is a real trade name in the
+   list (`T`): the short-name rule only allows an exact match, and this *was* an exact match → **1 wrong accept**
+   (Allergica answered as "T"). Lesson: refuse OCR readings shorter than 4 characters, before matching.
+
+---
+
 ## Version 2 — development results (not a test yet)
 
 **Why a v2:** the v1 analyses showed that TrOCR reads well but YOLO looks at the wrong place (generic name, or nothing),
@@ -167,36 +197,6 @@ Uciderm Plus → refused (only `PLUS` was read). The 5 products not in the list 
 **Honest caveat:** `T_brand = 88` sits just above one negative: Respiwell was read `ALLERIA`, which scores 87.5 against
 `ALLERGICA`. With so few dev photos, the margin is thin. Only a new test on **unseen photos** (≥ 20 new boxes,
 `PROTOCOL.md` §11) can say whether v2 really generalizes. Until then, these are development numbers.
-
----
-
-## Field test on own phone photos (v1.1)
-
-Added after v1.0, with rules committed before the run (`PROTOCOL.md` §10, commits `e60bcaa` and `6a522b0`).
-13 photos taken with my phone at home (boxes held in the hand, fridge light), sent through WhatsApp (900 × 1600 px).
-The system was **not changed**: same weights, same list, same threshold 91. Run once (`python -m medbox.evaluate --field`).
-3 more photos were excluded by the rules written before the run (2 names printed only in Arabic, 1 ambiguous variant).
-
-| Photo | Truth | Pipeline: what happened |
-|---|---|---|
-| 5 of 8 boxes (Clamoxyl, Uciderm Plus, Allergica, Maxilase, Inflamyl) | in the list | **no box detected** → refused |
-| Smecta | SMECTA | box on the **generic name line**, read `PLOSMECUTE 3 9-LON BUVEBLE` (= "diosmectite 3 g … buvable") → refused |
-| Urpex | URPEX | box on the **generic name line**, read `ACICLOVIR 6%` → closest name `ACICLOVIR OPALIA` (another laboratory's product), score 90 → **refused** |
-| Belifax | BELIFAX | box on the **generic name line**, read `OMERVABWO` (≈ "omeprazole") → refused |
-| 5 products not in the list | NONE | 5/5 refused (4 no detection, 1 read `ANGING OPEND NO.` → score 75) |
-
-**What the field test confirms (now on real photos):**
-
-1. **The label bias is the main failure.** When the detector finds a box (3 of 8 boxes), it is **always the generic
-   name line**, never the brand. On Urpex, OCR read the molecule correctly and the closest list entry was a product of
-   another laboratory: a lower threshold (90) would have produced a **confident wrong medicine**. The refusal rule stopped it.
-2. **Larger images were not enough.** The photos are about 20 times larger than the web pilot images, but the detector
-   still found no name region on 5 of 8 boxes. Probable causes (not measured): brand names in large stylized fonts
-   that differ from the training labels, and boxes photographed at an angle in the hand.
-3. **The detector protects against fragments.** Without it (baseline), TrOCR reads short pieces of the whole box
-   (`TAX`, `PAX`, `MAR`) that score exactly 90. One reading was the single letter `T`, which is a real trade name in the
-   list (`T`): the short-name rule only allows an exact match, and this *was* an exact match → **1 wrong accept**
-   (Allergica answered as "T"). Lesson: refuse OCR readings shorter than 4 characters, before matching.
 
 ---
 
