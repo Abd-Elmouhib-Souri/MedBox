@@ -285,9 +285,14 @@ def analyze(image, version):
             gr.Column(visible=True))                                  # show the result panels
 
 
-# ---- examples: 3 random Kaggle test images (CC BY 4.0), only if the dataset is on this computer ----------
-_kaggle = sorted(Path("data/raw/kabul/test/images").glob("*.jpg"))
-EXAMPLES = [[str(p)] for p in random.Random(42).sample(_kaggle, 3)] if len(_kaggle) >= 3 else None
+# ---- examples: 3 Kaggle test images shipped in examples/ (CC BY 4.0, see examples/ATTRIBUTION.md) ----
+# Fallback: the same seed-42 draw from the local Kaggle copy, if examples/ is empty
+_shipped = sorted(Path("examples").glob("*.jpg"))
+if _shipped:
+    EXAMPLES = [[str(p)] for p in _shipped]
+else:
+    _kaggle = sorted(Path("data/raw/kabul/test/images").glob("*.jpg"))
+    EXAMPLES = [[str(p)] for p in random.Random(42).sample(_kaggle, 3)] if len(_kaggle) >= 3 else None
 
 with gr.Blocks(title="MedBox Reader") as demo:
     gr.HTML("<div id='hdr'><h1>💊 MedBox Reader</h1>"
