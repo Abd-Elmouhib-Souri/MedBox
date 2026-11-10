@@ -1,0 +1,14 @@
+photo,true_name,source_file,group
+f01,CLAMOXYL,14.jpeg,in_list
+f02,SMECTA,13.jpeg,in_list
+f03,UCIDERM PLUS,12.jpeg,in_list
+f04,ALLERGICA,7.jpeg,in_list
+f05,URPEX,6.jpeg,in_list
+f06,BELIFAX,4.jpeg,in_list
+f07,MAXILASE,2.jpeg,in_list
+f08,INFLAMYL,1.jpeg,in_list
+f09,NONE,16.jpeg,not_in_list
+f10,NONE,11.jpeg,not_in_list
+f11,NONE,9.jpeg,not_in_list
+f12,NONE,8.jpeg,not_in_list
+f13,NONE,5.jpeg,not_in_list

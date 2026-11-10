@@ -230,3 +230,4 @@ data/dev/*.jpg
 data/test/*.jpg
 __pycache__/
 *.pyc
+data/field/*.jpg

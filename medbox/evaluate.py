@@ -2,6 +2,7 @@
 
     python -m medbox.evaluate --dev     # dev images only: sweep 0..100, choose the threshold, write it in config.yaml (once)
     python -m medbox.evaluate --final   # test images: checks the SHA-256 manifest, runs pipeline AND baseline ONCE
+    python -m medbox.evaluate --field   # own phone photos (v1.1, PROTOCOL.md section 10): same rules, ONCE
 
 Both modes refuse to run twice: --dev refuses if config.yaml already has a threshold,
 --final refuses if results/final_test.json already exists.
@@ -101,7 +102,7 @@ def versions() -> dict:
     return out
 
 
-def check_manifest(path: Path = Path("data/test_manifest.sha256")) -> None:
+def check_manifest(path: Path) -> None:
     """Refuse to run if any frozen file changed since the freeze commit."""
     for line in path.read_text(encoding="utf-8").splitlines():
         expected, file = line.split("  ", 1)
@@ -153,26 +154,27 @@ def run_dev() -> None:
     print(f"\nCHOSEN THRESHOLD = {thr}  ({rule})\nwritten: results/dev_sweep.json and config.yaml")
 
 
-def run_final() -> None:
-    out_path = RESULTS / "final_test.json"
+def run_once(name: str, truth_csv: str, folder: str, manifest: str, description: str) -> None:
+    """One frozen test set, run ONCE: manifest check, pipeline + baseline, metrics, decision rules."""
+    out_path = RESULTS / f"{name}.json"
     if out_path.exists():
-        raise SystemExit(f"{out_path} already exists: the test is run ONCE (PROTOCOL.md, section 7).")
+        raise SystemExit(f"{out_path} already exists: each test set is run ONCE (PROTOCOL.md).")
     cfg = load_config()
     thr = cfg["threshold"]
     if thr is None:
         raise SystemExit("No threshold in config.yaml: run --dev first.")
-    check_manifest()
-    truth = pd.read_csv("data/test_truth.csv")
+    check_manifest(Path(manifest))
+    truth = pd.read_csv(truth_csv)
     reader = Reader(cfg)
 
     systems = {}
-    for name, use_det in [("pipeline", True), ("baseline", False)]:
-        print(f"TEST — {name}")
-        rows = run_system(reader, truth, Path("data/test"), use_detector=use_det)
+    for sys_name, use_det in [("pipeline", True), ("baseline", False)]:
+        print(f"{name.upper()} — {sys_name}")
+        rows = run_system(reader, truth, Path(folder), use_detector=use_det)
         for r in rows:
             r["accepted"] = accepted(r, thr)
             r["error"] = error_category(r, thr)
-        systems[name] = {"metrics": metrics(rows, thr), "rows": rows}
+        systems[sys_name] = {"metrics": metrics(rows, thr), "rows": rows}
 
     p, b = systems["pipeline"]["metrics"], systems["baseline"]["metrics"]
     pv, bv = p["top1_precision"]["value"], b["top1_precision"]["value"]
@@ -181,7 +183,7 @@ def run_final() -> None:
     out = {
         "date_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_commit": git_commit(), "versions": versions(), "threshold": thr,
-        "test_set": "14 web-collected images (9 boxes + 5 negatives), not own photos (PROTOCOL.md, deviation 2)",
+        "test_set": description,
         "decision_rules": {"yolo_useful": yolo_useful,
                            "demo_publishable": p["wrong_accepts"]["count"] <= 1},
         **systems,
@@ -189,9 +191,19 @@ def run_final() -> None:
     RESULTS.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
     print(json.dumps({k: out[k] for k in ["threshold", "decision_rules"]}, indent=2))
-    for name in systems:
-        print(name, {k: v["text"] for k, v in systems[name]["metrics"].items()})
+    for sys_name in systems:
+        print(sys_name, {k: v["text"] for k, v in systems[sys_name]["metrics"].items()})
     print(f"written: {out_path}")
+
+
+def run_final() -> None:
+    run_once("final_test", "data/test_truth.csv", "data/test", "data/test_manifest.sha256",
+             "14 web-collected images (9 boxes + 5 negatives), not own photos (PROTOCOL.md, deviation 2)")
+
+
+def run_field() -> None:
+    run_once("field_test", "data/field_truth.csv", "data/field", "data/field_manifest.sha256",
+             "13 own phone photos (8 boxes in the list + 5 products not in the list), PROTOCOL.md section 10")
 
 
 if __name__ == "__main__":
@@ -199,5 +211,6 @@ if __name__ == "__main__":
     mode = ap.add_mutually_exclusive_group(required=True)
     mode.add_argument("--dev", action="store_true")
     mode.add_argument("--final", action="store_true")
+    mode.add_argument("--field", action="store_true")              # v1.1: own phone photos (PROTOCOL.md §10)
     args = ap.parse_args()
-    run_dev() if args.dev else run_final()
+    run_dev() if args.dev else run_final() if args.final else run_field()

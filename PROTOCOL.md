@@ -116,3 +116,23 @@ Let P = positive photos, A = accepted positive photos.
 - Small test set, so confidence intervals are wide.
 - YOLO training data is not Tunisian.
 - This is a prototype. It is not a medical tool and does not replace a pharmacist.
+
+## 10. Field test on own phone photos (v1.1, added 2026-11-10, before any run on these photos)
+
+The system is **frozen** at tag `v1.0` (commit `fe35b97`): same weights, same TrOCR, same closed list, same
+threshold **91**, same code in `medbox/reader.py`. Nothing is tuned on these photos; there is no dev split.
+
+- **Images:** 16 photos taken by the author with his phone on 2026-11-10, of medicine boxes found at home, held in
+  the hand (normal home light, fridge door). They were sent through WhatsApp, so they are compressed (about 900 × 1600 px).
+- **One photo per product.** Eligibility, decided before the run (`data/field_map.csv`):
+  - **in list (positives):** the trade name printed in Latin script on the photographed face is exactly a name of
+    `data/drugs_tn.csv` after normalization → `true_name` = that name (8 photos);
+  - **not in list:** no list name starts with the printed trade name (food supplements and products absent from the
+    list) → `true_name = NONE`, the correct answer is a refusal (5 photos);
+  - **excluded and reported:** trade name printed only in Arabic (2 photos: a limit declared since the start), and a
+    brand present in the list only as another variant ("Tussidane" vs "TUSSIDANE SANS SUCRE": 1 photo, ambiguous).
+- **Same processing as before** (`tools/field_set.py`: EXIF orientation, longest side ≤ 2048 px, no metadata),
+  frozen with a SHA-256 manifest (`data/field_manifest.sha256`) and committed before the run.
+- **Run once:** `python -m medbox.evaluate --field` → `results/field_test.json` (pipeline and baseline; same metrics,
+  Wilson intervals and decision rules as section 3 and 8). It refuses to run twice.
+- Images stay local by default (they show the author's home); only hashes and ground truth are committed.
