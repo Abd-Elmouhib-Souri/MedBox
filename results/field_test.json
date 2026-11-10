@@ -1,0 +1,491 @@
+{
+  "date_utc": "2026-11-10T14:41:33+00:00",
+  "git_commit": "6a522b0121f5fa408efd04c43a1ded38417fa5fc",
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "ultralytics": "8.4.207",
+    "transformers": "5.22.2",
+    "rapidfuzz": "3.14.6"
+  },
+  "threshold": 91,
+  "test_set": "13 own phone photos (8 boxes in the list + 5 products not in the list), PROTOCOL.md section 10",
+  "decision_rules": {
+    "yolo_useful": "undefined (a precision has n = 0)",
+    "demo_publishable": true
+  },
+  "pipeline": {
+    "metrics": {
+      "top1_precision": {
+        "k": 0,
+        "n": 0,
+        "value": null,
+        "ci95": null,
+        "text": "undefined (n = 0)"
+      },
+      "coverage": {
+        "k": 0,
+        "n": 8,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.3244
+        ],
+        "text": "0/8 (95% CI 0.00-0.32)"
+      },
+      "wrong_accepts": {
+        "count": 0,
+        "k": 0,
+        "n": 13,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.2281
+        ],
+        "text": "0/13 (95% CI 0.00-0.23)"
+      },
+      "negatives_refused": {
+        "k": 5,
+        "n": 5,
+        "value": 1.0,
+        "ci95": [
+          0.5655,
+          1.0
+        ],
+        "text": "5/5 (95% CI 0.57-1.00)"
+      }
+    },
+    "rows": [
+      {
+        "file": "f01.jpg",
+        "true_name": "CLAMOXYL",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "f02.jpg",
+        "true_name": "SMECTA",
+        "status": "ok",
+        "reason": null,
+        "name": "CYCLO 3 FORT",
+        "candidate": "CYCLO 3 FORT",
+        "score": 85.5,
+        "ocr_text": "PLOSMECUTE 3 9-LON BUVEBLE",
+        "box": [
+          166.8,
+          645.4,
+          407.0,
+          705.5
+        ],
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f03.jpg",
+        "true_name": "UCIDERM PLUS",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "f04.jpg",
+        "true_name": "ALLERGICA",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "f05.jpg",
+        "true_name": "URPEX",
+        "status": "ok",
+        "reason": null,
+        "name": "ACICLOVIR OPALIA",
+        "candidate": "ACICLOVIR OPALIA",
+        "score": 90.0,
+        "ocr_text": "ACICLOVIR 6%",
+        "box": [
+          278.9,
+          768.8,
+          403.9,
+          800.4
+        ],
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f06.jpg",
+        "true_name": "BELIFAX",
+        "status": "ok",
+        "reason": null,
+        "name": "ERVA",
+        "candidate": "ERVA",
+        "score": 90.0,
+        "ocr_text": "OMERVABWO",
+        "box": [
+          318.9,
+          565.7,
+          529.6,
+          624.0
+        ],
+        "rotation": 270,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f07.jpg",
+        "true_name": "MAXILASE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "f08.jpg",
+        "true_name": "INFLAMYL",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": "detection_failed"
+      },
+      {
+        "file": "f09.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f10.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "GINKGO",
+        "candidate": "GINKGO",
+        "score": 75.0,
+        "ocr_text": "ANGING OPEND NO.",
+        "box": [
+          155.9,
+          529.2,
+          649.3,
+          633.9
+        ],
+        "rotation": 270,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f11.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f12.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f13.jpg",
+        "true_name": "NONE",
+        "status": "refused",
+        "reason": "no_detection",
+        "name": null,
+        "candidate": null,
+        "score": 0.0,
+        "ocr_text": "",
+        "box": null,
+        "rotation": null,
+        "accepted": false,
+        "error": null
+      }
+    ]
+  },
+  "baseline": {
+    "metrics": {
+      "top1_precision": {
+        "k": 0,
+        "n": 1,
+        "value": 0.0,
+        "ci95": [
+          0.0,
+          0.7935
+        ],
+        "text": "0/1 (95% CI 0.00-0.79)"
+      },
+      "coverage": {
+        "k": 1,
+        "n": 8,
+        "value": 0.125,
+        "ci95": [
+          0.0224,
+          0.4709
+        ],
+        "text": "1/8 (95% CI 0.02-0.47)"
+      },
+      "wrong_accepts": {
+        "count": 1,
+        "k": 1,
+        "n": 13,
+        "value": 0.0769,
+        "ci95": [
+          0.0137,
+          0.3331
+        ],
+        "text": "1/13 (95% CI 0.01-0.33)"
+      },
+      "negatives_refused": {
+        "k": 5,
+        "n": 5,
+        "value": 1.0,
+        "ci95": [
+          0.5655,
+          1.0
+        ],
+        "text": "5/5 (95% CI 0.57-1.00)"
+      }
+    },
+    "rows": [
+      {
+        "file": "f01.jpg",
+        "true_name": "CLAMOXYL",
+        "status": "ok",
+        "reason": null,
+        "name": "KETAXOL",
+        "candidate": "KETAXOL",
+        "score": 90.0,
+        "ocr_text": "TAX",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f02.jpg",
+        "true_name": "SMECTA",
+        "status": "ok",
+        "reason": null,
+        "name": "KLAROMIN",
+        "candidate": "KLAROMIN",
+        "score": 72.0,
+        "ocr_text": "-KL",
+        "box": null,
+        "rotation": 270,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f03.jpg",
+        "true_name": "UCIDERM PLUS",
+        "status": "ok",
+        "reason": null,
+        "name": "AMAREL",
+        "candidate": "AMAREL",
+        "score": 90.0,
+        "ocr_text": "MAR",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f04.jpg",
+        "true_name": "ALLERGICA",
+        "status": "ok",
+        "reason": null,
+        "name": "T",
+        "candidate": "T",
+        "score": 100.0,
+        "ocr_text": "T",
+        "box": null,
+        "rotation": 270,
+        "accepted": true,
+        "error": "wrong_name_accepted"
+      },
+      {
+        "file": "f05.jpg",
+        "true_name": "URPEX",
+        "status": "ok",
+        "reason": null,
+        "name": "CIPROMAX",
+        "candidate": "CIPROMAX",
+        "score": 90.0,
+        "ocr_text": "MAX",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f06.jpg",
+        "true_name": "BELIFAX",
+        "status": "ok",
+        "reason": null,
+        "name": "ACTAPULGITE",
+        "candidate": "ACTAPULGITE",
+        "score": 77.14,
+        "ocr_text": "ITEM",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f07.jpg",
+        "true_name": "MAXILASE",
+        "status": "ok",
+        "reason": null,
+        "name": "ANDROCUR",
+        "candidate": "ANDROCUR",
+        "score": 90.0,
+        "ocr_text": "AND",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f08.jpg",
+        "true_name": "INFLAMYL",
+        "status": "ok",
+        "reason": null,
+        "name": "KETAXOL",
+        "candidate": "KETAXOL",
+        "score": 90.0,
+        "ocr_text": "TAX",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": "ocr_or_matching_failed"
+      },
+      {
+        "file": "f09.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "KETAXOL",
+        "candidate": "KETAXOL",
+        "score": 90.0,
+        "ocr_text": "TAX:",
+        "box": null,
+        "rotation": 270,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f10.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "ACARBOSE ADWYA",
+        "candidate": "ACARBOSE ADWYA",
+        "score": 90.0,
+        "ocr_text": "AD :",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f11.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "KETAXOL",
+        "candidate": "KETAXOL",
+        "score": 90.0,
+        "ocr_text": "TAX",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f12.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "ANGIPAX",
+        "candidate": "ANGIPAX",
+        "score": 90.0,
+        "ocr_text": "PAX",
+        "box": null,
+        "rotation": 90,
+        "accepted": false,
+        "error": null
+      },
+      {
+        "file": "f13.jpg",
+        "true_name": "NONE",
+        "status": "ok",
+        "reason": null,
+        "name": "BIFOR10",
+        "candidate": "BIFOR10",
+        "score": 90.0,
+        "ocr_text": "1",
+        "box": null,
+        "rotation": 0,
+        "accepted": false,
+        "error": null
+      }
+    ]
+  }
+}

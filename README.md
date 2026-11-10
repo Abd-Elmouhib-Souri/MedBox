@@ -17,11 +17,14 @@ list of 2,160 Tunisian trade names, and the system **refuses** when the match sc
 | Detector, Kaggle **test** split, evaluated **once** | mAP@0.5 = **0.667**, mAP@0.5:0.95 = 0.378 (182 images) | `results/yolo/yolo_results.json` |
 | End-to-end, frozen pilot test (14 web-collected images: 9 boxes + 5 non-medicine objects) | **0/9 boxes recognized** (95% CI 0.00–0.30) · **0 wrong accepts** (0/14, 95% CI 0.00–0.22) · **5/5 negatives refused** (95% CI 0.57–1.00) | `results/final_test.json` |
 | Baseline without detector (TrOCR on the whole image), same test | 0/9 recognized · 0 wrong accepts · 5/5 negatives refused | `results/final_test.json` |
-| Decision rule "YOLO is useful" | **undefined**: neither system accepted any image, so top-1 precision has n = 0 | `PROTOCOL.md` §8 |
+| **Field test (v1.1), 13 own phone photos** (8 boxes in the list + 5 pharmacy products not in the list), system frozen at v1.0 | Pipeline: **0/8 recognized** (95% CI 0.00–0.32) · **0 wrong accepts** (0/13, 95% CI 0.00–0.23) · **5/5 out-of-list products refused** (95% CI 0.57–1.00) | `results/field_test.json` |
+| Baseline, same field photos | 0/8 recognized · **1 wrong accept** (1/13, 95% CI 0.01–0.33) · 5/5 refused | `results/field_test.json` |
+| Decision rule "YOLO is useful" | **undefined** on both tests: the pipeline accepted no image, so its top-1 precision has n = 0 | `PROTOCOL.md` §8 |
 | Decision rule "demo can be published" (≤ 1 wrong accept) | yes (0 wrong accepts) | `PROTOCOL.md` §8 |
 
-**In plain words:** the system never gave a wrong drug name, but it also never recognized a drug on the test images.
-It refused everything. Below is why, and what this teaches.
+**In plain words:** on 27 test images (web pilot and own phone photos), the full pipeline **never gave a wrong drug
+name**, but it also **never recognized a drug**: it refused everything. The baseline without the detector gave one
+wrong answer. Below is why, and what this teaches.
 
 ---
 
@@ -41,6 +44,48 @@ Baseline: the same, without YOLO (TrOCR reads the whole image).
 | **TrOCR** `microsoft/trocr-base-printed` (Hugging Face), used as is | Encoder–decoder (ViT + Transformer) trained on printed text lines. |
 | **rapidfuzz** WRatio + closed list | Corrects OCR errors against known names only. |
 | **Refusal threshold** chosen on dev images only | A confident wrong answer is worse than a refusal. |
+
+---
+
+## How detection works
+
+**Detection vs OCR.** OCR reads text; it does not know *which* text on a box is the drug name. A medicine box has
+many lines (brand, molecule, dosage, laboratory, warnings). The detector's job is to find **where** the name is,
+so that TrOCR reads one line only.
+
+**What YOLOv8 does, step by step:**
+
+1. The photo is resized to 640 × 640 px (with grey bands to keep the ratio: "letterbox").
+2. A convolutional network (CSP backbone + feature pyramid) looks at the image **once** ("You Only Look Once") and,
+   at three scales, predicts for many positions: a box (x, y, width, height) and a confidence that it contains a
+   `drug-name`. YOLOv8 is *anchor-free*: it predicts the box directly, without predefined box shapes.
+3. Boxes below confidence 0.25 are dropped; overlapping boxes are merged by **non-maximum suppression** (NMS).
+4. MedBox keeps the **single most confident box**, enlarges it by 5 % on each side (so edge letters are not cut),
+   and crops it.
+5. TrOCR reads the crop at 0°, 90° and 270° (21 % of the training name boxes are vertical), and the reading with the
+   best match score is kept. Below the threshold (91), the answer is a refusal.
+
+**Example on 4 random images of the Kaggle test split** (CC BY 4.0, seed 42 — not hand-picked, not our frozen test;
+these boxes are not Tunisian, so most names are not in the Tunisian list and a refusal is the expected answer):
+
+![How detection works](results/figures/detection_examples.png)
+
+What this random sample shows: the detector finds a box on all 4 images, and TrOCR reads well when the crop is large
+(`CARBAMAZEPINE` exactly, `OXYBUTYIN HYDROCHLORIDE` almost). But on 3 of the 4 boxes, the detector framed the
+**molecule** (Oxybutynin, Alprazolam, Carbamazepine) and not the **brand** printed bigger on the same box
+(Ditropan, Xanised): the same label bias as in the error analysis. Row 3 also shows a limit of the rotation rule:
+the text is upside down (180°), a rotation MedBox does not try (only 0°, 90°, 270°).
+
+**Training of the detector** (run B, 50 epochs on 1,276 images; Kaggle T4, 13.2 min):
+
+| Training curves (losses go down, mAP goes up) | Precision–recall curve (val) |
+|---|---|
+| ![Training curves](results/yolo/runs/B_text/results.png) | ![PR curve](results/yolo/runs/B_text/BoxPR_curve.png) |
+
+Training images with their labels (Kaggle/Roboflow, CC BY 4.0) — note the vertical names and the boxes on generic
+names (e.g. "Mycophenolate" instead of the brand), which explain part of the errors below:
+
+![Training grid](results/yolo/train_grid.png)
 
 ---
 
@@ -72,10 +117,41 @@ the baseline (`candidate` field in `results/final_test.json`). A lower threshold
 
 ### What I would change next (decided before any new test)
 
-- Take **real phone photos** of real boxes (the planned test, not done; see deviations).
+- Re-train the detector on brand-name boxes (the field test shows this is the main blocker).
 - Refuse OCR readings shorter than 4 characters, before matching.
 - Match against **brand and generic names** (the list has a DCI column), and answer "generic name X" instead of guessing a brand.
 - Re-label the detector data to mark the brand line only; or detect the whole box first, then the name.
+- Also try a 180° rotation (upside-down text seen in the README figure).
+
+---
+
+## Field test on own phone photos (v1.1)
+
+Added after v1.0, with rules committed before the run (`PROTOCOL.md` §10, commits `e60bcaa` and `6a522b0`).
+13 photos taken with my phone at home (boxes held in the hand, fridge light), sent through WhatsApp (900 × 1600 px).
+The system was **not changed**: same weights, same list, same threshold 91. Run once (`python -m medbox.evaluate --field`).
+3 more photos were excluded by the rules written before the run (2 names printed only in Arabic, 1 ambiguous variant).
+
+| Photo | Truth | Pipeline: what happened |
+|---|---|---|
+| 5 of 8 boxes (Clamoxyl, Uciderm Plus, Allergica, Maxilase, Inflamyl) | in the list | **no box detected** → refused |
+| Smecta | SMECTA | box on the **generic name line**, read `PLOSMECUTE 3 9-LON BUVEBLE` (= "diosmectite 3 g … buvable") → refused |
+| Urpex | URPEX | box on the **generic name line**, read `ACICLOVIR 6%` → closest name `ACICLOVIR OPALIA` (another laboratory's product), score 90 → **refused** |
+| Belifax | BELIFAX | box on the **generic name line**, read `OMERVABWO` (≈ "omeprazole") → refused |
+| 5 products not in the list | NONE | 5/5 refused (4 no detection, 1 read `ANGING OPEND NO.` → score 75) |
+
+**What the field test confirms (now on real photos):**
+
+1. **The label bias is the main failure.** When the detector finds a box (3 of 8 boxes), it is **always the generic
+   name line**, never the brand. On Urpex, OCR read the molecule correctly and the closest list entry was a product of
+   another laboratory: a lower threshold (90) would have produced a **confident wrong medicine**. The refusal rule stopped it.
+2. **Larger images were not enough.** The photos are about 20 times larger than the web pilot images, but the detector
+   still found no name region on 5 of 8 boxes. Probable causes (not measured): brand names in large stylized fonts
+   that differ from the training labels, and boxes photographed at an angle in the hand.
+3. **The detector protects against fragments.** Without it (baseline), TrOCR reads short pieces of the whole box
+   (`TAX`, `PAX`, `MAR`) that score exactly 90. One reading was the single letter `T`, which is a real trade name in the
+   list (`T`): the short-name rule only allows an exact match, and this *was* an exact match → **1 wrong accept**
+   (Allergica answered as "T"). Lesson: refuse OCR readings shorter than 4 characters, before matching.
 
 ---
 
@@ -105,14 +181,16 @@ Key commits (`git log --oneline` shows the full order):
 | `0d918dc` | Reader and evaluation code |
 | `3a35c59` | Threshold 91 chosen on dev |
 | `7253798` | Final test run, executed once (`results/final_test.json`) |
+| `e60bcaa` | Field test rules (§10): own phone photos, system frozen at v1.0 |
+| `6a522b0` | Field test set frozen (SHA-256 manifest) |
 
 The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest first and refuses to run twice.
 
 ### Deviations (all written before the results they affect)
 
 1. **Fewer boxes than planned:** 12 eligible boxes instead of 30+ → dev 3 boxes + 2 negatives, test 9 boxes + 5 negatives. Pilot scale.
-2. **No own photos.** The dev/test images were collected from the web or are screenshots (checked with EXIF: none
-   comes from the author's phone). They are cleaner and much smaller than real phone photos, so the end-to-end result
+2. **No own photos in v1.0.** The dev/test images were collected from the web or are screenshots (checked with EXIF:
+   none comes from the author's phone). Own phone photos were added afterwards as a separate field test (v1.1, above). They are cleaner and much smaller than real phone photos, so the end-to-end result
    is **not representative of real use**. They are **not redistributed** (copyright); only their SHA-256 hashes and the
    ground truth are in this repository.
 3. **Closed list changed** from the Kaggle list (1,639 names, about two years old) to the more recent and complete
@@ -151,7 +229,7 @@ The dev/test evaluation needs the local images, which are not published.
 
 ## Limits
 
-Pilot scale (9 test boxes, wide intervals) · web images, not phone photos · no Arabic · no dosage · closed list ·
+Small tests (9 web + 8 own boxes, wide intervals) · own photos compressed by WhatsApp · no Arabic · no dosage · closed list ·
 detector trained on non-Tunisian data · TrOCR not fine-tuned.
 
 ## Licence
