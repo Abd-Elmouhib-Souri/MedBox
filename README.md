@@ -11,7 +11,18 @@ list of 2,160 Tunisian trade names, and the system **refuses** when the match sc
 
 ---
 
-## Results in one table
+## Status (November 2026)
+
+| Version | What it does | Result | Status |
+|---|---|---|---|
+| **v1** (`v1.0`, `v1.1`) | YOLOv8n finds the name line → TrOCR reads it → fuzzy match on 2,160 Tunisian trade names, or refuse | **0 wrong answers on 27 frozen test images**, but **0 drugs recognized** (it refused everything) | Tested, frozen |
+| **v2** (`v2.0-dev`) | CRAFT text detection on the tallest lines → TrOCR → brand **or molecule** answer, or refuse | **6/8 brands, 7/8 brand or molecule, 0/13 wrong** on dev photos — thresholds were tuned on these photos, so this is **not** a test | Independent test pre-registered, pending |
+
+**Main finding:** the error analysis showed that the training labels often mark the **molecule** line, not the **brand**,
+so the v1 detector looked at the wrong text. v2 was designed from this finding.
+The demo uses v2 by default (v1 selectable).
+
+## v1 results (tested)
 
 | What was measured | Result | Source |
 |---|---|---|
