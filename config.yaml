@@ -21,5 +21,5 @@ v2:
   crop_pad: 0.05
   rotations: [0, 90, 180, 270]
   min_chars: 4                   # readings with fewer letters/digits are dropped
-  T_brand: null
-  T_dci: null
+  T_brand: 88
+  T_dci: 72

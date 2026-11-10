@@ -1,0 +1,3499 @@
+{
+  "date_utc": "2026-11-10T17:36:26+00:00",
+  "git_commit": "bfb04f10f12bf31c6563e2b1147f259788189d80",
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "ultralytics": "8.4.207",
+    "transformers": "5.22.2",
+    "rapidfuzz": "3.14.6"
+  },
+  "note": "DEVELOPMENT results: thresholds chosen on these 13 photos (not a test)",
+  "T_brand": 88,
+  "T_dci": 72,
+  "summary": {
+    "brand_correct": {
+      "k": 6,
+      "n": 8,
+      "value": 0.75,
+      "ci95": [
+        0.4093,
+        0.9285
+      ],
+      "text": "6/8 (95% CI 0.41-0.93)"
+    },
+    "brand_or_molecule_correct": {
+      "k": 7,
+      "n": 8,
+      "value": 0.875,
+      "ci95": [
+        0.5291,
+        0.9776
+      ],
+      "text": "7/8 (95% CI 0.53-0.98)"
+    },
+    "wrong_answers": {
+      "count": 0,
+      "k": 0,
+      "n": 13,
+      "value": 0.0,
+      "ci95": [
+        0.0,
+        0.2281
+      ],
+      "text": "0/13 (95% CI 0.00-0.23)"
+    },
+    "not_in_list_refused": {
+      "k": 5,
+      "n": 5,
+      "value": 1.0,
+      "ci95": [
+        0.5655,
+        1.0
+      ],
+      "text": "5/5 (95% CI 0.57-1.00)"
+    }
+  },
+  "rows": [
+    {
+      "file": "f01.jpg",
+      "true_name": "CLAMOXYL",
+      "candidates": [
+        {
+          "box": [
+            226.0,
+            486.0,
+            719.0,
+            644.0
+          ],
+          "height": 158.0,
+          "rotation": 0,
+          "text": "CLAMOXYL",
+          "brand": "CLAMOXYL",
+          "brand_score": 100.0,
+          "dci": "AMBROXOL",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            226.0,
+            486.0,
+            719.0,
+            644.0
+          ],
+          "height": 158.0,
+          "rotation": 90,
+          "text": "CHAMOKYL",
+          "brand": "CLAMOXYL",
+          "brand_score": 75.0,
+          "dci": "HEPTAMINOL",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            226.0,
+            486.0,
+            719.0,
+            644.0
+          ],
+          "height": 158.0,
+          "rotation": 180,
+          "text": "[AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            226.0,
+            486.0,
+            719.0,
+            644.0
+          ],
+          "height": 158.0,
+          "rotation": 270,
+          "text": "CLAMOUNT",
+          "brand": "CELASONE",
+          "brand_score": 62.5,
+          "dci": "CROTAMITON",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            528.0,
+            706.0,
+            682.0,
+            763.0
+          ],
+          "height": 57.0,
+          "rotation": 0,
+          "text": "POUDRE",
+          "brand": "ASCAPOUDRE",
+          "brand_score": 75.0,
+          "dci": "PIMOZIDE",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            528.0,
+            706.0,
+            682.0,
+            763.0
+          ],
+          "height": 57.0,
+          "rotation": 90,
+          "text": "POUDE",
+          "brand": "ASCAPOUDRE",
+          "brand_score": 66.67,
+          "dci": "PIMOZIDE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            528.0,
+            706.0,
+            682.0,
+            763.0
+          ],
+          "height": 57.0,
+          "rotation": 180,
+          "text": "SUPNOD",
+          "brand": "SIPRODIS",
+          "brand_score": 57.14,
+          "dci": "SULPIRIDE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            528.0,
+            706.0,
+            682.0,
+            763.0
+          ],
+          "height": 57.0,
+          "rotation": 270,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            234.0,
+            1112.0,
+            718.0,
+            1169.0
+          ],
+          "height": 57.0,
+          "rotation": 0,
+          "text": "12 DOS DE POUNDRE POUR SHOPP",
+          "brand": "DOLIPRANE PRO",
+          "brand_score": 43.9,
+          "dci": "MONOSULFURE DE SODIUM+LEVURES",
+          "dci_score": 42.11
+        },
+        {
+          "box": [
+            234.0,
+            1112.0,
+            718.0,
+            1169.0
+          ],
+          "height": 57.0,
+          "rotation": 90,
+          "text": "12 DOS DE POURE POUR SHOP",
+          "brand": "DOLIPRANE PRO",
+          "brand_score": 47.37,
+          "dci": "MONOSULFURE DE SODIUM+LEVURES",
+          "dci_score": 44.44
+        },
+        {
+          "box": [
+            234.0,
+            1112.0,
+            718.0,
+            1169.0
+          ],
+          "height": 57.0,
+          "rotation": 180,
+          "text": "LI ZOSS INOD EXPINOD EP SESOP ZL",
+          "brand": "ISOPTINE LP",
+          "brand_score": 41.86,
+          "dci": "POLYVIDONE IODEE",
+          "dci_score": 41.67
+        },
+        {
+          "box": [
+            234.0,
+            1112.0,
+            718.0,
+            1169.0
+          ],
+          "height": 57.0,
+          "rotation": 270,
+          "text": "12 DOSED REDNOD EP SESOP Z1",
+          "brand": "SERETIDE DISKUS",
+          "brand_score": 42.86,
+          "dci": "SERENOA REPENS",
+          "dci_score": 53.66
+        },
+        {
+          "box": [
+            416.0,
+            649.0,
+            676.0,
+            705.0
+          ],
+          "height": 56.0,
+          "rotation": 0,
+          "text": "500 MG/SML",
+          "brand": "CLAVOR 100 MG/12.5MG/ML",
+          "brand_score": 48.48,
+          "dci": "MAGNESIUM",
+          "dci_score": 42.11
+        },
+        {
+          "box": [
+            416.0,
+            649.0,
+            676.0,
+            705.0
+          ],
+          "height": 56.0,
+          "rotation": 90,
+          "text": "500 MG/SML",
+          "brand": "CLAVOR 100 MG/12.5MG/ML",
+          "brand_score": 48.48,
+          "dci": "MAGNESIUM",
+          "dci_score": 42.11
+        },
+        {
+          "box": [
+            416.0,
+            649.0,
+            676.0,
+            705.0
+          ],
+          "height": 56.0,
+          "rotation": 180,
+          "text": "500 08/BU 00S",
+          "brand": "CREON 10 000 U",
+          "brand_score": 37.04,
+          "dci": "BARYUM SULFATE",
+          "dci_score": 29.63
+        },
+        {
+          "box": [
+            416.0,
+            649.0,
+            676.0,
+            705.0
+          ],
+          "height": 56.0,
+          "rotation": 270,
+          "text": "500 MG/BU 009",
+          "brand": "DUROGESIC 50 MCG/HEURE",
+          "brand_score": 45.16,
+          "dci": "MAGNESIUM",
+          "dci_score": 27.27
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "CLAMOXYL",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f02.jpg",
+      "true_name": "SMECTA",
+      "candidates": [
+        {
+          "box": [
+            151.4,
+            451.7,
+            758.6,
+            675.3
+          ],
+          "height": 223.6,
+          "rotation": 0,
+          "text": "SMECTA'",
+          "brand": "SMECTA",
+          "brand_score": 100.0,
+          "dci": "DIOSMECTITE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            151.4,
+            451.7,
+            758.6,
+            675.3
+          ],
+          "height": 223.6,
+          "rotation": 90,
+          "text": "SMECTA",
+          "brand": "SMECTA",
+          "brand_score": 100.0,
+          "dci": "DIOSMECTITE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            151.4,
+            451.7,
+            758.6,
+            675.3
+          ],
+          "height": 223.6,
+          "rotation": 180,
+          "text": "DISCENTS",
+          "brand": "DICETEL",
+          "brand_score": 66.67,
+          "dci": "DIENOGEST",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            151.4,
+            451.7,
+            758.6,
+            675.3
+          ],
+          "height": 223.6,
+          "rotation": 270,
+          "text": "SIMMENTS",
+          "brand": "MOMENT",
+          "brand_score": 71.43,
+          "dci": "MOMETASONE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            38.7,
+            -12.0,
+            117.3,
+            158.0
+          ],
+          "height": 170.0,
+          "rotation": 0,
+          "text": "ACSTO",
+          "brand": "ACTAFON",
+          "brand_score": 66.67,
+          "dci": "LACTULOSE",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            38.7,
+            -12.0,
+            117.3,
+            158.0
+          ],
+          "height": 170.0,
+          "rotation": 90,
+          "text": "DISCOUNT",
+          "brand": "DICLOFEN",
+          "brand_score": 62.5,
+          "dci": "DICLOFENAC",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            38.7,
+            -12.0,
+            117.3,
+            158.0
+          ],
+          "height": 170.0,
+          "rotation": 180,
+          "text": "DISCOUNT",
+          "brand": "DICLOFEN",
+          "brand_score": 62.5,
+          "dci": "DICLOFENAC",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            38.7,
+            -12.0,
+            117.3,
+            158.0
+          ],
+          "height": 170.0,
+          "rotation": 270,
+          "text": "ANCISTOR",
+          "brand": "ACTISOUFRE",
+          "brand_score": 66.67,
+          "dci": "GANCICLOVIR",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            667.2,
+            585.2,
+            761.8,
+            629.8
+          ],
+          "height": 44.5,
+          "rotation": 0,
+          "text": "-VANILLE",
+          "brand": "VAGILEN",
+          "brand_score": 66.67,
+          "dci": "OXACILLINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            667.2,
+            585.2,
+            761.8,
+            629.8
+          ],
+          "height": 44.5,
+          "rotation": 90,
+          "text": "-VANILE",
+          "brand": "VAGILEN",
+          "brand_score": 71.43,
+          "dci": "VASELINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            667.2,
+            585.2,
+            761.8,
+            629.8
+          ],
+          "height": 44.5,
+          "rotation": 180,
+          "text": "BILLUEA-",
+          "brand": "BRILIQUE",
+          "brand_score": 62.5,
+          "dci": "NEBIVOLOL",
+          "dci_score": 47.06
+        },
+        {
+          "box": [
+            667.2,
+            585.2,
+            761.8,
+            629.8
+          ],
+          "height": 44.5,
+          "rotation": 270,
+          "text": "-VANIA-",
+          "brand": "ANTIXA",
+          "brand_score": 61.54,
+          "dci": "ARNICA",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            566.9,
+            601.6,
+            678.1,
+            643.4
+          ],
+          "height": 41.9,
+          "rotation": 0,
+          "text": "ORANGE-V",
+          "brand": "ORAMINE",
+          "brand_score": 66.67,
+          "dci": "LORATADINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            566.9,
+            601.6,
+            678.1,
+            643.4
+          ],
+          "height": 41.9,
+          "rotation": 90,
+          "text": "ORANGE-",
+          "brand": "ORAMINE",
+          "brand_score": 71.43,
+          "dci": "LORATADINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            566.9,
+            601.6,
+            678.1,
+            643.4
+          ],
+          "height": 41.9,
+          "rotation": 180,
+          "text": "-BEBUEJO",
+          "brand": "CEBUTOL",
+          "brand_score": 53.33,
+          "dci": "ACEBUTOLOL",
+          "dci_score": 44.44
+        },
+        {
+          "box": [
+            566.9,
+            601.6,
+            678.1,
+            643.4
+          ],
+          "height": 41.9,
+          "rotation": 270,
+          "text": "ORANGE-V",
+          "brand": "ORAMINE",
+          "brand_score": 66.67,
+          "dci": "LORATADINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            799.2,
+            1040.9,
+            901.8,
+            1080.1
+          ],
+          "height": 39.2,
+          "rotation": 0,
+          "text": "SACHETS",
+          "brand": "ACNETA",
+          "brand_score": 61.54,
+          "dci": "LACTULOSE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            799.2,
+            1040.9,
+            901.8,
+            1080.1
+          ],
+          "height": 39.2,
+          "rotation": 180,
+          "text": "SUBHOWS (RM)",
+          "brand": "PULMOSERUM",
+          "brand_score": 50.0,
+          "dci": "N-BUTYLHYOSCINE BROMURE",
+          "dci_score": 42.42
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "SMECTA",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f03.jpg",
+      "true_name": "UCIDERM PLUS",
+      "candidates": [
+        {
+          "box": [
+            102.8,
+            653.2,
+            541.2,
+            900.8
+          ],
+          "height": 247.7,
+          "rotation": 0,
+          "text": "UELLERM",
+          "brand": "GEL-LARMES",
+          "brand_score": 58.82,
+          "dci": "CARMELLOSE",
+          "dci_score": 47.06
+        },
+        {
+          "box": [
+            102.8,
+            653.2,
+            541.2,
+            900.8
+          ],
+          "height": 247.7,
+          "rotation": 90,
+          "text": "DISCOUNT",
+          "brand": "DICLOFEN",
+          "brand_score": 62.5,
+          "dci": "DICLOFENAC",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            102.8,
+            653.2,
+            541.2,
+            900.8
+          ],
+          "height": 247.7,
+          "rotation": 180,
+          "text": "THEPLEN",
+          "brand": "UTEPLEX",
+          "brand_score": 71.43,
+          "dci": "THEOPHYLLINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            102.8,
+            653.2,
+            541.2,
+            900.8
+          ],
+          "height": 247.7,
+          "rotation": 270,
+          "text": "EXCLUDED",
+          "brand": "ECAZIDE",
+          "brand_score": 53.33,
+          "dci": "LEFLUNOMIDE",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            162.7,
+            119.0,
+            235.3,
+            322.0
+          ],
+          "height": 203.0,
+          "rotation": 0,
+          "text": "ANGISTOP",
+          "brand": "ANGIPAX",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            162.7,
+            119.0,
+            235.3,
+            322.0
+          ],
+          "height": 203.0,
+          "rotation": 90,
+          "text": "MOISIONV",
+          "brand": "FOSTIMON",
+          "brand_score": 62.5,
+          "dci": "MOLSIDOMINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            162.7,
+            119.0,
+            235.3,
+            322.0
+          ],
+          "height": 203.0,
+          "rotation": 180,
+          "text": "GATSONA",
+          "brand": "AKTONATE",
+          "brand_score": 66.67,
+          "dci": "IRGASAN",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            162.7,
+            119.0,
+            235.3,
+            322.0
+          ],
+          "height": 203.0,
+          "rotation": 270,
+          "text": "ANGUSTOP",
+          "brand": "SPASTOP",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            514.8,
+            629.2,
+            628.2,
+            729.8
+          ],
+          "height": 100.6,
+          "rotation": 0,
+          "text": "PLUS",
+          "brand": "CALPLUS",
+          "brand_score": 72.73,
+          "dci": "LACTULOSE",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            514.8,
+            629.2,
+            628.2,
+            729.8
+          ],
+          "height": 100.6,
+          "rotation": 90,
+          "text": "THIS",
+          "brand": "ATIMOS",
+          "brand_score": 60.0,
+          "dci": "BETAHISTINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            514.8,
+            629.2,
+            628.2,
+            729.8
+          ],
+          "height": 100.6,
+          "rotation": 180,
+          "text": "SHAD",
+          "brand": "HALDOL",
+          "brand_score": 60.0,
+          "dci": "FSH",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            514.8,
+            629.2,
+            628.2,
+            729.8
+          ],
+          "height": 100.6,
+          "rotation": 270,
+          "text": "THIS",
+          "brand": "ATIMOS",
+          "brand_score": 60.0,
+          "dci": "BETAHISTINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            142.1,
+            870.4,
+            288.9,
+            951.6
+          ],
+          "height": 81.2,
+          "rotation": 0,
+          "text": "TABLE NECEIPTIVE",
+          "brand": "ALZHECEPT",
+          "brand_score": 56.0,
+          "dci": "TIANEPTINE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            142.1,
+            870.4,
+            288.9,
+            951.6
+          ],
+          "height": 81.2,
+          "rotation": 90,
+          "text": "TABLEBOOK",
+          "brand": "STABLON",
+          "brand_score": 62.5,
+          "dci": "ACEBUTOLOL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            142.1,
+            870.4,
+            288.9,
+            951.6
+          ],
+          "height": 81.2,
+          "rotation": 180,
+          "text": "CASHIER COPY",
+          "brand": "ASPIRYL",
+          "brand_score": 52.63,
+          "dci": "BETASITOSTEROL",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            142.1,
+            870.4,
+            288.9,
+            951.6
+          ],
+          "height": 81.2,
+          "rotation": 270,
+          "text": "CASHIER:",
+          "brand": "ASTAIR",
+          "brand_score": 61.54,
+          "dci": "ACARBOSE",
+          "dci_score": 53.33
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 72.73
+      },
+      "outcome": "refused"
+    },
+    {
+      "file": "f04.jpg",
+      "true_name": "ALLERGICA",
+      "candidates": [
+        {
+          "box": [
+            202.0,
+            533.0,
+            581.0,
+            637.0
+          ],
+          "height": 104.0,
+          "rotation": 0,
+          "text": "ALLERGICA",
+          "brand": "ALLERGICA",
+          "brand_score": 100.0,
+          "dci": "ARNICA",
+          "dci_score": 66.67
+        },
+        {
+          "box": [
+            202.0,
+            533.0,
+            581.0,
+            637.0
+          ],
+          "height": 104.0,
+          "rotation": 90,
+          "text": "ALLERGICA",
+          "brand": "ALLERGICA",
+          "brand_score": 100.0,
+          "dci": "ARNICA",
+          "dci_score": 66.67
+        },
+        {
+          "box": [
+            202.0,
+            533.0,
+            581.0,
+            637.0
+          ],
+          "height": 104.0,
+          "rotation": 180,
+          "text": "VIONITY",
+          "brand": "VIAXON",
+          "brand_score": 61.54,
+          "dci": "BICLOTYMOL",
+          "dci_score": 47.06
+        },
+        {
+          "box": [
+            202.0,
+            533.0,
+            581.0,
+            637.0
+          ],
+          "height": 104.0,
+          "rotation": 270,
+          "text": "AURORITY",
+          "brand": "AIRYCORT",
+          "brand_score": 62.5,
+          "dci": "ATROPINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            33.5,
+            20.8,
+            145.5,
+            95.2
+          ],
+          "height": 74.5,
+          "rotation": 0,
+          "text": "TAXMENT",
+          "brand": "AXEN",
+          "brand_score": 72.73,
+          "dci": "CEFOTAXIME",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            33.5,
+            20.8,
+            145.5,
+            95.2
+          ],
+          "height": 74.5,
+          "rotation": 180,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            579.2,
+            586.1,
+            680.8,
+            642.9
+          ],
+          "height": 56.8,
+          "rotation": 0,
+          "text": "10MG",
+          "brand": "AMUGYN",
+          "brand_score": 40.0,
+          "dci": "MAGNESIUM",
+          "dci_score": 30.77
+        },
+        {
+          "box": [
+            579.2,
+            586.1,
+            680.8,
+            642.9
+          ],
+          "height": 56.8,
+          "rotation": 180,
+          "text": "AMOT",
+          "brand": "FAMO",
+          "brand_score": 75.0,
+          "dci": "FAMOTIDINE",
+          "dci_score": 57.14
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "ALLERGICA",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f05.jpg",
+      "true_name": "URPEX",
+      "candidates": [
+        {
+          "box": [
+            249.0,
+            644.0,
+            587.0,
+            807.0
+          ],
+          "height": 163.0,
+          "rotation": 0,
+          "text": "URPER",
+          "brand": "URPEX",
+          "brand_score": 80.0,
+          "dci": "FER",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            249.0,
+            644.0,
+            587.0,
+            807.0
+          ],
+          "height": 163.0,
+          "rotation": 90,
+          "text": "URPER",
+          "brand": "URPEX",
+          "brand_score": 80.0,
+          "dci": "FER",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            249.0,
+            644.0,
+            587.0,
+            807.0
+          ],
+          "height": 163.0,
+          "rotation": 180,
+          "text": "MED.IN",
+          "brand": "CIMEDINE",
+          "brand_score": 71.43,
+          "dci": "CIMETIDINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            16.1,
+            -12.8,
+            130.9,
+            62.8
+          ],
+          "height": 75.7,
+          "rotation": 0,
+          "text": "TAXMENT",
+          "brand": "AXEN",
+          "brand_score": 72.73,
+          "dci": "CEFOTAXIME",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            16.1,
+            -12.8,
+            130.9,
+            62.8
+          ],
+          "height": 75.7,
+          "rotation": 180,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            276.0,
+            767.0,
+            392.0,
+            797.0
+          ],
+          "height": 30.0,
+          "rotation": 0,
+          "text": "ACICLOVIR 5%",
+          "brand": "CICLOVIRAX",
+          "brand_score": 84.21,
+          "dci": "ACICLOVIR",
+          "dci_score": 85.71
+        },
+        {
+          "box": [
+            276.0,
+            767.0,
+            392.0,
+            797.0
+          ],
+          "height": 30.0,
+          "rotation": 90,
+          "text": "ACCEIVR 6%",
+          "brand": "ACIRYL",
+          "brand_score": 61.54,
+          "dci": "ACICLOVIR",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            276.0,
+            767.0,
+            392.0,
+            797.0
+          ],
+          "height": 30.0,
+          "rotation": 180,
+          "text": "9% BI4010104",
+          "brand": "BIFOR10",
+          "brand_score": 42.11,
+          "dci": "D. PTERONYSSINUS 100% DPT",
+          "dci_score": 27.03
+        },
+        {
+          "box": [
+            276.0,
+            767.0,
+            392.0,
+            797.0
+          ],
+          "height": 30.0,
+          "rotation": 270,
+          "text": "ACIPTADIOY",
+          "brand": "CIPTADINE",
+          "brand_score": 73.68,
+          "dci": "CALCIPOTRIOL",
+          "dci_score": 63.64
+        },
+        {
+          "box": [
+            788.0,
+            735.0,
+            857.0,
+            760.0
+          ],
+          "height": 25.0,
+          "rotation": 0,
+          "text": "LIONEE",
+          "brand": "LIOREFEN",
+          "brand_score": 71.43,
+          "dci": "LIDOCAINE",
+          "dci_score": 66.67
+        },
+        {
+          "box": [
+            788.0,
+            735.0,
+            857.0,
+            760.0
+          ],
+          "height": 25.0,
+          "rotation": 180,
+          "text": "REQUIRED",
+          "brand": "REQUIP",
+          "brand_score": 71.43,
+          "dci": "PARIETAIRE",
+          "dci_score": 55.56
+        }
+      ],
+      "decision": {
+        "status": "molecule",
+        "answer": "ACICLOVIR",
+        "score": 85.71
+      },
+      "outcome": "correct_molecule"
+    },
+    {
+      "file": "f06.jpg",
+      "true_name": "BELIFAX",
+      "candidates": [
+        {
+          "box": [
+            275.0,
+            484.0,
+            590.0,
+            581.0
+          ],
+          "height": 97.0,
+          "rotation": 0,
+          "text": "BELIFAX",
+          "brand": "BELIFAX",
+          "brand_score": 100.0,
+          "dci": "VENLAFAXINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            275.0,
+            484.0,
+            590.0,
+            581.0
+          ],
+          "height": 97.0,
+          "rotation": 90,
+          "text": "BELIFAX",
+          "brand": "BELIFAX",
+          "brand_score": 100.0,
+          "dci": "VENLAFAXINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            275.0,
+            484.0,
+            590.0,
+            581.0
+          ],
+          "height": 97.0,
+          "rotation": 180,
+          "text": "BELLES",
+          "brand": "GEL-LARMES",
+          "brand_score": 62.5,
+          "dci": "BETAXOLOL",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            275.0,
+            484.0,
+            590.0,
+            581.0
+          ],
+          "height": 97.0,
+          "rotation": 270,
+          "text": "BELLED",
+          "brand": "BECLOJET",
+          "brand_score": 57.14,
+          "dci": "BETAXOLOL",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            322.0,
+            372.0,
+            510.0,
+            444.0
+          ],
+          "height": 72.0,
+          "rotation": 0,
+          "text": "14 HOURS",
+          "brand": "TAHOR",
+          "brand_score": 46.15,
+          "dci": "CHLORURE DE SODIUM",
+          "dci_score": 38.46
+        },
+        {
+          "box": [
+            322.0,
+            372.0,
+            510.0,
+            444.0
+          ],
+          "height": 72.0,
+          "rotation": 180,
+          "text": "CAMPT",
+          "brand": "CALMATUX",
+          "brand_score": 61.54,
+          "dci": "CAPTOPRIL",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            329.0,
+            575.0,
+            525.0,
+            613.0
+          ],
+          "height": 38.0,
+          "rotation": 0,
+          "text": "OMEPRAZOLE",
+          "brand": "MEPRAZOL",
+          "brand_score": 88.89,
+          "dci": "OMEPRAZOLE",
+          "dci_score": 100.0
+        },
+        {
+          "box": [
+            329.0,
+            575.0,
+            525.0,
+            613.0
+          ],
+          "height": 38.0,
+          "rotation": 90,
+          "text": "OMERAZOLE",
+          "brand": "MEPRAZOL",
+          "brand_score": 82.35,
+          "dci": "OMEPRAZOLE",
+          "dci_score": 94.74
+        },
+        {
+          "box": [
+            329.0,
+            575.0,
+            525.0,
+            613.0
+          ],
+          "height": 38.0,
+          "rotation": 180,
+          "text": "ONEPRAYAB3W0",
+          "brand": "OREX SPRAY",
+          "brand_score": 54.55,
+          "dci": "CLONAZEPAM",
+          "dci_score": 45.45
+        },
+        {
+          "box": [
+            329.0,
+            575.0,
+            525.0,
+            613.0
+          ],
+          "height": 38.0,
+          "rotation": 270,
+          "text": "OMERVABWO",
+          "brand": "ERVA",
+          "brand_score": 61.54,
+          "dci": "OMEPRAZOLE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            387.0,
+            629.0,
+            473.0,
+            665.0
+          ],
+          "height": 36.0,
+          "rotation": 0,
+          "text": "20 MG",
+          "brand": "AMUGYN",
+          "brand_score": 36.36,
+          "dci": "ARNICA TM",
+          "dci_score": 28.57
+        },
+        {
+          "box": [
+            387.0,
+            629.0,
+            473.0,
+            665.0
+          ],
+          "height": 36.0,
+          "rotation": 90,
+          "text": "20.00",
+          "brand": "BIFOR20",
+          "brand_score": 33.33,
+          "dci": "D. PTERONYSSINUS 100% DPT",
+          "dci_score": 20.0
+        },
+        {
+          "box": [
+            387.0,
+            629.0,
+            473.0,
+            665.0
+          ],
+          "height": 36.0,
+          "rotation": 180,
+          "text": "6W 02",
+          "brand": "LOWRAC",
+          "brand_score": 25.0,
+          "dci": "ARNICA TM",
+          "dci_score": 14.29
+        },
+        {
+          "box": [
+            263.0,
+            895.0,
+            414.0,
+            928.0
+          ],
+          "height": 33.0,
+          "rotation": 0,
+          "text": "PHOMPOHHD",
+          "brand": "PHLORO",
+          "brand_score": 53.33,
+          "dci": "HOMEOPATHIE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            263.0,
+            895.0,
+            414.0,
+            928.0
+          ],
+          "height": 33.0,
+          "rotation": 90,
+          "text": "PROMOUNT",
+          "brand": "OROMONE",
+          "brand_score": 66.67,
+          "dci": "CROTAMITON",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            263.0,
+            895.0,
+            414.0,
+            928.0
+          ],
+          "height": 33.0,
+          "rotation": 180,
+          "text": "944664-G-P",
+          "brand": "GONAL-F PEN",
+          "brand_score": 28.57,
+          "dci": "GLIPIZIDE",
+          "dci_score": 21.05
+        },
+        {
+          "box": [
+            263.0,
+            895.0,
+            414.0,
+            928.0
+          ],
+          "height": 33.0,
+          "rotation": 270,
+          "text": "CASHIER",
+          "brand": "ASTAIR",
+          "brand_score": 61.54,
+          "dci": "ACARBOSE",
+          "dci_score": 53.33
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "BELIFAX",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f07.jpg",
+      "true_name": "MAXILASE",
+      "candidates": [
+        {
+          "box": [
+            416.6,
+            56.0,
+            512.4,
+            190.0
+          ],
+          "height": 134.0,
+          "rotation": 0,
+          "text": "MASTERTAIN",
+          "brand": "METHACIN",
+          "brand_score": 66.67,
+          "dci": "SERTRALINE",
+          "dci_score": 70.0
+        },
+        {
+          "box": [
+            416.6,
+            56.0,
+            512.4,
+            190.0
+          ],
+          "height": 134.0,
+          "rotation": 90,
+          "text": "ORANGE",
+          "brand": "ORAMINE",
+          "brand_score": 76.92,
+          "dci": "LORATADINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            416.6,
+            56.0,
+            512.4,
+            190.0
+          ],
+          "height": 134.0,
+          "rotation": 180,
+          "text": "STREAM:",
+          "brand": "STRESAM",
+          "brand_score": 92.31,
+          "dci": "PRAZEPAM",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            416.6,
+            56.0,
+            512.4,
+            190.0
+          ],
+          "height": 134.0,
+          "rotation": 270,
+          "text": "ITEMARY",
+          "brand": "BISTERYL",
+          "brand_score": 66.67,
+          "dci": "TAMARIN",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            312.0,
+            578.0,
+            707.0,
+            703.0
+          ],
+          "height": 125.0,
+          "rotation": 0,
+          "text": "MAXILASE",
+          "brand": "MAXILASE",
+          "brand_score": 100.0,
+          "dci": "MIZOLASTINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            312.0,
+            578.0,
+            707.0,
+            703.0
+          ],
+          "height": 125.0,
+          "rotation": 90,
+          "text": "MAXILASE",
+          "brand": "MAXILASE",
+          "brand_score": 100.0,
+          "dci": "MIZOLASTINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            312.0,
+            578.0,
+            707.0,
+            703.0
+          ],
+          "height": 125.0,
+          "rotation": 180,
+          "text": ".ESE|IXEN",
+          "brand": "EBEFEN",
+          "brand_score": 53.33,
+          "dci": "EOSINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            312.0,
+            578.0,
+            707.0,
+            703.0
+          ],
+          "height": 125.0,
+          "rotation": 270,
+          "text": "MAXILAXAN",
+          "brand": "MAXILASE",
+          "brand_score": 70.59,
+          "dci": "MOXIFLOXACINE",
+          "dci_score": 63.64
+        },
+        {
+          "box": [
+            124.2,
+            199.0,
+            224.8,
+            320.0
+          ],
+          "height": 121.0,
+          "rotation": 0,
+          "text": "DISCOUNT",
+          "brand": "DICLOFEN",
+          "brand_score": 62.5,
+          "dci": "DICLOFENAC",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            124.2,
+            199.0,
+            224.8,
+            320.0
+          ],
+          "height": 121.0,
+          "rotation": 90,
+          "text": "TOTAL:",
+          "brand": "TORENTAL",
+          "brand_score": 76.92,
+          "dci": "SOTALOL",
+          "dci_score": 66.67
+        },
+        {
+          "box": [
+            124.2,
+            199.0,
+            224.8,
+            320.0
+          ],
+          "height": 121.0,
+          "rotation": 180,
+          "text": "DISP",
+          "brand": "DIARESTOP",
+          "brand_score": 61.54,
+          "dci": "DIAZEPAM",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            124.2,
+            199.0,
+            224.8,
+            320.0
+          ],
+          "height": 121.0,
+          "rotation": 270,
+          "text": "CUSTOR",
+          "brand": "CRESTOR",
+          "brand_score": 76.92,
+          "dci": "CAPTOPRIL",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            217.7,
+            164.0,
+            271.3,
+            276.0
+          ],
+          "height": 112.0,
+          "rotation": 0,
+          "text": "TASIONE",
+          "brand": "BETASONE",
+          "brand_score": 80.0,
+          "dci": "MOMETASONE",
+          "dci_score": 70.59
+        },
+        {
+          "box": [
+            217.7,
+            164.0,
+            271.3,
+            276.0
+          ],
+          "height": 112.0,
+          "rotation": 90,
+          "text": "BUEDISSNL",
+          "brand": "BLISSEL",
+          "brand_score": 62.5,
+          "dci": "PIRIBEDIL",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            217.7,
+            164.0,
+            271.3,
+            276.0
+          ],
+          "height": 112.0,
+          "rotation": 180,
+          "text": "TOTAL AMOUNT",
+          "brand": "PECTORAL ADULTE",
+          "brand_score": 59.26,
+          "dci": "TROLAMINE",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            217.7,
+            164.0,
+            271.3,
+            276.0
+          ],
+          "height": 112.0,
+          "rotation": 270,
+          "text": "TUSSIGANE",
+          "brand": "URSOBILANE",
+          "brand_score": 63.16,
+          "dci": "TAMSULOSINE",
+          "dci_score": 60.0
+        },
+        {
+          "box": [
+            55.9,
+            393.0,
+            109.1,
+            455.0
+          ],
+          "height": 61.9,
+          "rotation": 270,
+          "text": "CODE",
+          "brand": "CINODERM",
+          "brand_score": 66.67,
+          "dci": "CODEINE",
+          "dci_score": 72.73
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "MAXILASE",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f08.jpg",
+      "true_name": "INFLAMYL",
+      "candidates": [
+        {
+          "box": [
+            296.0,
+            373.0,
+            719.0,
+            471.0
+          ],
+          "height": 98.0,
+          "rotation": 0,
+          "text": "INFLAMYL",
+          "brand": "INFLAMYL",
+          "brand_score": 100.0,
+          "dci": "RIFAMYCINE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            296.0,
+            373.0,
+            719.0,
+            471.0
+          ],
+          "height": 98.0,
+          "rotation": 90,
+          "text": "INFAMYL",
+          "brand": "INFLAMYL",
+          "brand_score": 93.33,
+          "dci": "RIFAMYCINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            296.0,
+            373.0,
+            719.0,
+            471.0
+          ],
+          "height": 98.0,
+          "rotation": 180,
+          "text": "KWEJUI",
+          "brand": "KETIN",
+          "brand_score": 54.55,
+          "dci": "CEFUROXIME",
+          "dci_score": 37.5
+        },
+        {
+          "box": [
+            296.0,
+            373.0,
+            719.0,
+            471.0
+          ],
+          "height": 98.0,
+          "rotation": 270,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            623.0,
+            -19.0,
+            878.0,
+            68.0
+          ],
+          "height": 86.9,
+          "rotation": 0,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            623.0,
+            -19.0,
+            878.0,
+            68.0
+          ],
+          "height": 86.9,
+          "rotation": 90,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            623.0,
+            -19.0,
+            878.0,
+            68.0
+          ],
+          "height": 86.9,
+          "rotation": 180,
+          "text": "AMMARY",
+          "brand": "AMAREL",
+          "brand_score": 66.67,
+          "dci": "TAMARIN",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            623.0,
+            -19.0,
+            878.0,
+            68.0
+          ],
+          "height": 86.9,
+          "rotation": 270,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            458.0,
+            447.0,
+            711.0,
+            491.0
+          ],
+          "height": 44.0,
+          "rotation": 0,
+          "text": "SUSPENSION BUVABLE",
+          "brand": "TENSIOVALS",
+          "brand_score": 57.14,
+          "dci": "PHENOBARBITAL",
+          "dci_score": 51.61
+        },
+        {
+          "box": [
+            458.0,
+            447.0,
+            711.0,
+            491.0
+          ],
+          "height": 44.0,
+          "rotation": 90,
+          "text": "SUSPENSION BUVABLE",
+          "brand": "TENSIOVALS",
+          "brand_score": 57.14,
+          "dci": "PHENOBARBITAL",
+          "dci_score": 51.61
+        },
+        {
+          "box": [
+            458.0,
+            447.0,
+            711.0,
+            491.0
+          ],
+          "height": 44.0,
+          "rotation": 180,
+          "text": "SUSPENSUOSUEDS",
+          "brand": "TUBES DOSES",
+          "brand_score": 56.0,
+          "dci": "PREDNISONE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            458.0,
+            447.0,
+            711.0,
+            491.0
+          ],
+          "height": 44.0,
+          "rotation": 270,
+          "text": "SUSPENSIONSPENS",
+          "brand": "SUPRASONE",
+          "brand_score": 58.33,
+          "dci": "PREDNISONE",
+          "dci_score": 56.0
+        },
+        {
+          "box": [
+            443.0,
+            483.0,
+            709.0,
+            521.0
+          ],
+          "height": 38.0,
+          "rotation": 0,
+          "text": "ACIDE MEPENAMIQUE 1%",
+          "brand": "PARACETYL PEDIATRIQUE",
+          "brand_score": 57.89,
+          "dci": "ACIDE MEFENAMIQUE",
+          "dci_score": 86.49
+        },
+        {
+          "box": [
+            443.0,
+            483.0,
+            709.0,
+            521.0
+          ],
+          "height": 38.0,
+          "rotation": 90,
+          "text": "ACIDE MECHAMIQUE 1%",
+          "brand": "ACTIFED RHUME",
+          "brand_score": 55.17,
+          "dci": "ACIDE MEFENAMIQUE",
+          "dci_score": 77.78
+        },
+        {
+          "box": [
+            443.0,
+            483.0,
+            709.0,
+            521.0
+          ],
+          "height": 38.0,
+          "rotation": 180,
+          "text": "%1 AMBINPUPLPN SPICY",
+          "brand": "ABILIFY",
+          "brand_score": 44.44,
+          "dci": "AMISULPRIDE",
+          "dci_score": 45.16
+        },
+        {
+          "box": [
+            443.0,
+            483.0,
+            709.0,
+            521.0
+          ],
+          "height": 38.0,
+          "rotation": 270,
+          "text": "ACIDE ME[EMPL]EM PDICV",
+          "brand": "ACTIFED RHUME ET FIEVRE",
+          "brand_score": 53.33,
+          "dci": "ACIDE MEFENAMIQUE",
+          "dci_score": 56.41
+        },
+        {
+          "box": [
+            586.0,
+            1070.0,
+            668.0,
+            1098.0
+          ],
+          "height": 28.0,
+          "rotation": 0,
+          "text": "150 ML",
+          "brand": "SPIRA 1.5 MUI",
+          "brand_score": 42.11,
+          "dci": "TIMOLOL",
+          "dci_score": 30.77
+        },
+        {
+          "box": [
+            586.0,
+            1070.0,
+            668.0,
+            1098.0
+          ],
+          "height": 28.0,
+          "rotation": 90,
+          "text": "150ML",
+          "brand": "AMLOR",
+          "brand_score": 40.0,
+          "dci": "TIMOLOL",
+          "dci_score": 33.33
+        },
+        {
+          "box": [
+            586.0,
+            1070.0,
+            668.0,
+            1098.0
+          ],
+          "height": 28.0,
+          "rotation": 180,
+          "text": "150ML",
+          "brand": "AMLOR",
+          "brand_score": 40.0,
+          "dci": "TIMOLOL",
+          "dci_score": 33.33
+        },
+        {
+          "box": [
+            586.0,
+            1070.0,
+            668.0,
+            1098.0
+          ],
+          "height": 28.0,
+          "rotation": 270,
+          "text": "150ML",
+          "brand": "AMLOR",
+          "brand_score": 40.0,
+          "dci": "TIMOLOL",
+          "dci_score": 33.33
+        }
+      ],
+      "decision": {
+        "status": "brand",
+        "answer": "INFLAMYL",
+        "score": 100.0
+      },
+      "outcome": "correct_brand"
+    },
+    {
+      "file": "f09.jpg",
+      "true_name": "NONE",
+      "candidates": [
+        {
+          "box": [
+            283.0,
+            605.0,
+            593.0,
+            681.0
+          ],
+          "height": 76.0,
+          "rotation": 0,
+          "text": "RESPIWELL",
+          "brand": "CARDENSIEL",
+          "brand_score": 63.16,
+          "dci": "EOSINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            283.0,
+            605.0,
+            593.0,
+            681.0
+          ],
+          "height": 76.0,
+          "rotation": 90,
+          "text": "RESPWELL",
+          "brand": "RISPERDAL",
+          "brand_score": 58.82,
+          "dci": "CARTEOLOL",
+          "dci_score": 47.06
+        },
+        {
+          "box": [
+            283.0,
+            605.0,
+            593.0,
+            681.0
+          ],
+          "height": 76.0,
+          "rotation": 180,
+          "text": "RESIPWILL",
+          "brand": "FRESIDOL",
+          "brand_score": 58.82,
+          "dci": "RAMIPRIL",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            283.0,
+            605.0,
+            593.0,
+            681.0
+          ],
+          "height": 76.0,
+          "rotation": 270,
+          "text": "RESIPIPSEIPT",
+          "brand": "EPILEPTA",
+          "brand_score": 60.0,
+          "dci": "ARIPIPRAZOLE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            372.0,
+            980.0,
+            487.0,
+            1011.0
+          ],
+          "height": 31.0,
+          "rotation": 0,
+          "text": "TOUX GRASSE",
+          "brand": "TUBES GRANULES",
+          "brand_score": 56.0,
+          "dci": "ATORVASTATINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            372.0,
+            980.0,
+            487.0,
+            1011.0
+          ],
+          "height": 31.0,
+          "rotation": 90,
+          "text": "TOUX GRASSE",
+          "brand": "TUBES GRANULES",
+          "brand_score": 56.0,
+          "dci": "ATORVASTATINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            372.0,
+            980.0,
+            487.0,
+            1011.0
+          ],
+          "height": 31.0,
+          "rotation": 180,
+          "text": "TOTAL XNOI",
+          "brand": "TITANOREINE",
+          "brand_score": 57.14,
+          "dci": "SOTALOL",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            372.0,
+            980.0,
+            487.0,
+            1011.0
+          ],
+          "height": 31.0,
+          "rotation": 270,
+          "text": "TAX GRANGE",
+          "brand": "ARNIGEL",
+          "brand_score": 58.82,
+          "dci": "TROLAMINE",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            277.0,
+            1192.0,
+            532.0,
+            1223.0
+          ],
+          "height": 31.0,
+          "rotation": 0,
+          "text": "COMPLEMENT ALIMENIAIRE SAMS GLUTEM",
+          "brand": "PECTOLYSE ADULTE SANS SUCRE",
+          "brand_score": 49.18,
+          "dci": "SOLIFENACINE SUCCINATE",
+          "dci_score": 46.43
+        },
+        {
+          "box": [
+            277.0,
+            1192.0,
+            532.0,
+            1223.0
+          ],
+          "height": 31.0,
+          "rotation": 90,
+          "text": "COMPLEMENT ALINENIAIRE SAHS GLUTEN",
+          "brand": "PECTOLYSE ADULTE SANS SUCRE",
+          "brand_score": 49.18,
+          "dci": "BETAMETHASONE+ACIDE SALICYLIQUE",
+          "dci_score": 49.23
+        },
+        {
+          "box": [
+            277.0,
+            1192.0,
+            532.0,
+            1223.0
+          ],
+          "height": 31.0,
+          "rotation": 180,
+          "text": "COUNDING SIGNATURE REFUNDUNCO",
+          "brand": "DIACURE ENFANT",
+          "brand_score": 46.51,
+          "dci": "INSULINE DEGLUDEC",
+          "dci_score": 47.83
+        },
+        {
+          "box": [
+            277.0,
+            1192.0,
+            532.0,
+            1223.0
+          ],
+          "height": 31.0,
+          "rotation": 270,
+          "text": "COMPIDENT ALAMAILAN INTERPURCHASE",
+          "brand": "CLOMIPRAMINE MERCK",
+          "brand_score": 47.06,
+          "dci": "CAFEINE+ERGOTAMINE TARTRATE",
+          "dci_score": 46.67
+        },
+        {
+          "box": [
+            393.0,
+            1032.0,
+            456.0,
+            1061.0
+          ],
+          "height": 29.0,
+          "rotation": 0,
+          "text": "ALLERGIE",
+          "brand": "ALLERGAMINE",
+          "brand_score": 84.21,
+          "dci": "CABERGOLINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            393.0,
+            1032.0,
+            456.0,
+            1061.0
+          ],
+          "height": 29.0,
+          "rotation": 90,
+          "text": "ALLERGIE",
+          "brand": "ALLERGAMINE",
+          "brand_score": 84.21,
+          "dci": "CABERGOLINE",
+          "dci_score": 63.16
+        },
+        {
+          "box": [
+            393.0,
+            1032.0,
+            456.0,
+            1061.0
+          ],
+          "height": 29.0,
+          "rotation": 180,
+          "text": "SUBARILY",
+          "brand": "SABRIL",
+          "brand_score": 71.43,
+          "dci": "ESTRIOL",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            393.0,
+            1032.0,
+            456.0,
+            1061.0
+          ],
+          "height": 29.0,
+          "rotation": 270,
+          "text": "ALLERIA",
+          "brand": "ALLERGICA",
+          "brand_score": 87.5,
+          "dci": "ARNICA",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            370.0,
+            1100.0,
+            496.0,
+            1128.0
+          ],
+          "height": 28.0,
+          "rotation": 0,
+          "text": "MAUX DE GORGE",
+          "brand": "MUXOL FORT",
+          "brand_score": 52.17,
+          "dci": "FUMARATE DE FER",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            370.0,
+            1100.0,
+            496.0,
+            1128.0
+          ],
+          "height": 28.0,
+          "rotation": 90,
+          "text": "MAUX DE GORGE",
+          "brand": "MUXOL FORT",
+          "brand_score": 52.17,
+          "dci": "FUMARATE DE FER",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            370.0,
+            1100.0,
+            496.0,
+            1128.0
+          ],
+          "height": 28.0,
+          "rotation": 180,
+          "text": "A8108 EP KNEW",
+          "brand": "DEPAKINE",
+          "brand_score": 47.62,
+          "dci": "TIANEPTINE",
+          "dci_score": 43.48
+        },
+        {
+          "box": [
+            370.0,
+            1100.0,
+            496.0,
+            1128.0
+          ],
+          "height": 28.0,
+          "rotation": 270,
+          "text": "MAX DE KNE",
+          "brand": "BASDENE",
+          "brand_score": 58.82,
+          "dci": "FUMARATE DE FER",
+          "dci_score": 56.0
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 87.5
+      },
+      "outcome": "refused"
+    },
+    {
+      "file": "f10.jpg",
+      "true_name": "NONE",
+      "candidates": [
+        {
+          "box": [
+            735.8,
+            444.0,
+            827.2,
+            701.0
+          ],
+          "height": 257.0,
+          "rotation": 0,
+          "text": "ANGUSTOP",
+          "brand": "SPASTOP",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            735.8,
+            444.0,
+            827.2,
+            701.0
+          ],
+          "height": 257.0,
+          "rotation": 90,
+          "text": "NO.LSIONV",
+          "brand": "NAZOLIN",
+          "brand_score": 62.5,
+          "dci": "INOSINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            735.8,
+            444.0,
+            827.2,
+            701.0
+          ],
+          "height": 257.0,
+          "rotation": 180,
+          "text": "ANGISION",
+          "brand": "TRANSITON",
+          "brand_score": 70.59,
+          "dci": "ADENOSINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            735.8,
+            444.0,
+            827.2,
+            701.0
+          ],
+          "height": 257.0,
+          "rotation": 270,
+          "text": "ANGISTOP",
+          "brand": "ANGIPAX",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            145.4,
+            439.8,
+            655.6,
+            638.2
+          ],
+          "height": 198.3,
+          "rotation": 0,
+          "text": "ANGISTOP",
+          "brand": "ANGIPAX",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            145.4,
+            439.8,
+            655.6,
+            638.2
+          ],
+          "height": 198.3,
+          "rotation": 90,
+          "text": "ANGISTOP",
+          "brand": "ANGIPAX",
+          "brand_score": 66.67,
+          "dci": "NOMEGESTROL",
+          "dci_score": 52.63
+        },
+        {
+          "box": [
+            145.4,
+            439.8,
+            655.6,
+            638.2
+          ],
+          "height": 198.3,
+          "rotation": 180,
+          "text": "ADOTSIONV",
+          "brand": "ADOLINE",
+          "brand_score": 62.5,
+          "dci": "ADENOSINE",
+          "dci_score": 66.67
+        },
+        {
+          "box": [
+            145.4,
+            439.8,
+            655.6,
+            638.2
+          ],
+          "height": 198.3,
+          "rotation": 270,
+          "text": "ANGISION",
+          "brand": "TRANSITON",
+          "brand_score": 70.59,
+          "dci": "ADENOSINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            15.4,
+            0.0,
+            69.6,
+            80.0
+          ],
+          "height": 79.9,
+          "rotation": 0,
+          "text": "COPPER",
+          "brand": "DOMPER",
+          "brand_score": 66.67,
+          "dci": "CAPTOPRIL",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            15.4,
+            0.0,
+            69.6,
+            80.0
+          ],
+          "height": 79.9,
+          "rotation": 90,
+          "text": "ATED",
+          "brand": "BACTEKOD",
+          "brand_score": 66.67,
+          "dci": "DUTASTERIDE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            15.4,
+            0.0,
+            69.6,
+            80.0
+          ],
+          "height": 79.9,
+          "rotation": 270,
+          "text": "POPARIA",
+          "brand": "UTP OPALIA",
+          "brand_score": 70.59,
+          "dci": "CAPTOPRIL",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            492.1,
+            526.3,
+            652.9,
+            594.7
+          ],
+          "height": 68.4,
+          "rotation": 0,
+          "text": "PHANYNGLITE",
+          "brand": "ANGIOTEC",
+          "brand_score": 63.16,
+          "dci": "PHENYLEPHRINE",
+          "dci_score": 58.33
+        },
+        {
+          "box": [
+            492.1,
+            526.3,
+            652.9,
+            594.7
+          ],
+          "height": 68.4,
+          "rotation": 90,
+          "text": "- PHANYABLE",
+          "brand": "PANADOL",
+          "brand_score": 55.56,
+          "dci": "PANTOPRAZOLE",
+          "dci_score": 52.17
+        },
+        {
+          "box": [
+            492.1,
+            526.3,
+            652.9,
+            594.7
+          ],
+          "height": 68.4,
+          "rotation": 180,
+          "text": "SUBUAEUD -",
+          "brand": "IBUCARE",
+          "brand_score": 47.06,
+          "dci": "SULFAGUANIDINE",
+          "dci_score": 41.67
+        },
+        {
+          "box": [
+            492.1,
+            526.3,
+            652.9,
+            594.7
+          ],
+          "height": 68.4,
+          "rotation": 270,
+          "text": "PAYMENT",
+          "brand": "EMPAMET",
+          "brand_score": 71.43,
+          "dci": "PIPAMPERONE",
+          "dci_score": 55.56
+        },
+        {
+          "box": [
+            424.0,
+            646.0,
+            526.0,
+            700.0
+          ],
+          "height": 54.0,
+          "rotation": 0,
+          "text": "CITRON",
+          "brand": "CIPRO",
+          "brand_score": 72.73,
+          "dci": "ACITRETINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            424.0,
+            646.0,
+            526.0,
+            700.0
+          ],
+          "height": 54.0,
+          "rotation": 90,
+          "text": "CHON",
+          "brand": "CHOLDOWN",
+          "brand_score": 66.67,
+          "dci": "CODEINE",
+          "dci_score": 54.55
+        },
+        {
+          "box": [
+            424.0,
+            646.0,
+            526.0,
+            700.0
+          ],
+          "height": 54.0,
+          "rotation": 180,
+          "text": "10.90",
+          "brand": "BIFOR10",
+          "brand_score": 33.33,
+          "dci": "D. PTERONYSSINUS 100% DPT",
+          "dci_score": 20.0
+        },
+        {
+          "box": [
+            424.0,
+            646.0,
+            526.0,
+            700.0
+          ],
+          "height": 54.0,
+          "rotation": 270,
+          "text": "CASH",
+          "brand": "E CAPS",
+          "brand_score": 60.0,
+          "dci": "FSH",
+          "dci_score": 57.14
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 72.73
+      },
+      "outcome": "refused"
+    },
+    {
+      "file": "f11.jpg",
+      "true_name": "NONE",
+      "candidates": [
+        {
+          "box": [
+            441.0,
+            352.0,
+            636.0,
+            449.0
+          ],
+          "height": 97.0,
+          "rotation": 0,
+          "text": "TELLX:",
+          "brand": "TILL",
+          "brand_score": 66.67,
+          "dci": "ATENOLOL",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            441.0,
+            352.0,
+            636.0,
+            449.0
+          ],
+          "height": 97.0,
+          "rotation": 90,
+          "text": "ELIX",
+          "brand": "BEDELIX",
+          "brand_score": 72.73,
+          "dci": "CETRORELIX",
+          "dci_score": 57.14
+        },
+        {
+          "box": [
+            441.0,
+            352.0,
+            636.0,
+            449.0
+          ],
+          "height": 97.0,
+          "rotation": 180,
+          "text": "XITA",
+          "brand": "SITA",
+          "brand_score": 75.0,
+          "dci": "DILTIAZEM",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            441.0,
+            352.0,
+            636.0,
+            449.0
+          ],
+          "height": 97.0,
+          "rotation": 270,
+          "text": "XITE",
+          "brand": "MEXINE",
+          "brand_score": 60.0,
+          "dci": "CEFIXIME",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            488.0,
+            427.0,
+            627.0,
+            489.0
+          ],
+          "height": 62.0,
+          "rotation": 0,
+          "text": "TOUX",
+          "brand": "TOBREX",
+          "brand_score": 60.0,
+          "dci": "ETIFOXINE",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            488.0,
+            427.0,
+            627.0,
+            489.0
+          ],
+          "height": 62.0,
+          "rotation": 90,
+          "text": "TOUX",
+          "brand": "TOBREX",
+          "brand_score": 60.0,
+          "dci": "ETIFOXINE",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            488.0,
+            427.0,
+            627.0,
+            489.0
+          ],
+          "height": 62.0,
+          "rotation": 180,
+          "text": "XNOL",
+          "brand": "XALANOL",
+          "brand_score": 72.73,
+          "dci": "DANAZOL",
+          "dci_score": 54.55
+        },
+        {
+          "box": [
+            374.0,
+            488.0,
+            629.0,
+            531.0
+          ],
+          "height": 43.0,
+          "rotation": 0,
+          "text": "ADULTS & CHILDREN",
+          "brand": "LAXOLYNE CHILDREN",
+          "brand_score": 68.75,
+          "dci": "DUTASTERIDE",
+          "dci_score": 53.85
+        },
+        {
+          "box": [
+            374.0,
+            488.0,
+            629.0,
+            531.0
+          ],
+          "height": 43.0,
+          "rotation": 90,
+          "text": "ADUTTS & CHILDREN",
+          "brand": "LAXOLYNE CHILDREN",
+          "brand_score": 62.5,
+          "dci": "DUTASTERIDE",
+          "dci_score": 53.85
+        },
+        {
+          "box": [
+            374.0,
+            488.0,
+            629.0,
+            531.0
+          ],
+          "height": 43.0,
+          "rotation": 180,
+          "text": "UBIPINO & SUNPY",
+          "brand": "BIDORZO SP",
+          "brand_score": 52.17,
+          "dci": "INOSINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            374.0,
+            488.0,
+            629.0,
+            531.0
+          ],
+          "height": 43.0,
+          "rotation": 270,
+          "text": "ADJPLIC & SIMPOY",
+          "brand": "TADAPLUS SAIPH",
+          "brand_score": 57.14,
+          "dci": "ALUMINIUM OXYDE",
+          "dci_score": 48.28
+        },
+        {
+          "box": [
+            372.0,
+            542.0,
+            475.0,
+            585.0
+          ],
+          "height": 43.0,
+          "rotation": 0,
+          "text": "SYRUP",
+          "brand": "REQUIP",
+          "brand_score": 54.55,
+          "dci": "SULPIRIDE",
+          "dci_score": 42.86
+        },
+        {
+          "box": [
+            372.0,
+            542.0,
+            475.0,
+            585.0
+          ],
+          "height": 43.0,
+          "rotation": 90,
+          "text": "SYRUP",
+          "brand": "REQUIP",
+          "brand_score": 54.55,
+          "dci": "SULPIRIDE",
+          "dci_score": 42.86
+        },
+        {
+          "box": [
+            372.0,
+            542.0,
+            475.0,
+            585.0
+          ],
+          "height": 43.0,
+          "rotation": 180,
+          "text": "SNJAS",
+          "brand": "MONCAS",
+          "brand_score": 54.55,
+          "dci": "ALGINATES",
+          "dci_score": 42.86
+        },
+        {
+          "box": [
+            372.0,
+            542.0,
+            475.0,
+            585.0
+          ],
+          "height": 43.0,
+          "rotation": 270,
+          "text": "SVRUN",
+          "brand": "BRUFEN",
+          "brand_score": 54.55,
+          "dci": "LOSARTAN",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            355.0,
+            901.0,
+            481.0,
+            939.0
+          ],
+          "height": 38.0,
+          "rotation": 0,
+          "text": "120 MIL",
+          "brand": "AMOXIL",
+          "brand_score": 46.15,
+          "dci": "RAMIPRIL",
+          "dci_score": 40.0
+        },
+        {
+          "box": [
+            355.0,
+            901.0,
+            481.0,
+            939.0
+          ],
+          "height": 38.0,
+          "rotation": 90,
+          "text": "120ML",
+          "brand": "AMLOR",
+          "brand_score": 40.0,
+          "dci": "TIMOLOL",
+          "dci_score": 33.33
+        },
+        {
+          "box": [
+            355.0,
+            901.0,
+            481.0,
+            939.0
+          ],
+          "height": 38.0,
+          "rotation": 180,
+          "text": "TW OIL",
+          "brand": "TILL",
+          "brand_score": 60.0,
+          "dci": "CAPTOPRIL",
+          "dci_score": 53.33
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 75.0
+      },
+      "outcome": "refused"
+    },
+    {
+      "file": "f12.jpg",
+      "true_name": "NONE",
+      "candidates": [
+        {
+          "box": [
+            21.6,
+            575.0,
+            89.4,
+            716.0
+          ],
+          "height": 141.0,
+          "rotation": 90,
+          "text": "PAYMANA",
+          "brand": "PAMISCAN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            21.6,
+            575.0,
+            89.4,
+            716.0
+          ],
+          "height": 141.0,
+          "rotation": 180,
+          "text": "AMOUNT",
+          "brand": "AMUGYN",
+          "brand_score": 66.67,
+          "dci": "AMANTADINE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            21.6,
+            575.0,
+            89.4,
+            716.0
+          ],
+          "height": 141.0,
+          "rotation": 270,
+          "text": "WWW.COM",
+          "brand": "CITOM",
+          "brand_score": 50.0,
+          "dci": "CLOBAZAM",
+          "dci_score": 40.0
+        },
+        {
+          "box": [
+            466.0,
+            629.0,
+            853.0,
+            742.0
+          ],
+          "height": 113.0,
+          "rotation": 0,
+          "text": "ANGICALM",
+          "brand": "XICALM",
+          "brand_score": 71.43,
+          "dci": "ARNICA",
+          "dci_score": 71.43
+        },
+        {
+          "box": [
+            466.0,
+            629.0,
+            853.0,
+            742.0
+          ],
+          "height": 113.0,
+          "rotation": 90,
+          "text": "ANGICALM",
+          "brand": "XICALM",
+          "brand_score": 71.43,
+          "dci": "ARNICA",
+          "dci_score": 71.43
+        },
+        {
+          "box": [
+            466.0,
+            629.0,
+            853.0,
+            742.0
+          ],
+          "height": 113.0,
+          "rotation": 180,
+          "text": "UNIQIBUY",
+          "brand": "UNISIA",
+          "brand_score": 57.14,
+          "dci": "ALUMINIUM OXYDE",
+          "dci_score": 43.48
+        },
+        {
+          "box": [
+            466.0,
+            629.0,
+            853.0,
+            742.0
+          ],
+          "height": 113.0,
+          "rotation": 270,
+          "text": "ANGICIENT",
+          "brand": "ANGIOZIDE",
+          "brand_score": 66.67,
+          "dci": "NICOTINE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            36.0,
+            756.0,
+            66.0,
+            814.0
+          ],
+          "height": 58.0,
+          "rotation": 0,
+          "text": "30ML",
+          "brand": "AMLOR",
+          "brand_score": 44.44,
+          "dci": "TIMOLOL",
+          "dci_score": 36.36
+        },
+        {
+          "box": [
+            36.0,
+            756.0,
+            66.0,
+            814.0
+          ],
+          "height": 58.0,
+          "rotation": 90,
+          "text": "30ML",
+          "brand": "AMLOR",
+          "brand_score": 44.44,
+          "dci": "TIMOLOL",
+          "dci_score": 36.36
+        },
+        {
+          "box": [
+            36.0,
+            756.0,
+            66.0,
+            814.0
+          ],
+          "height": 58.0,
+          "rotation": 180,
+          "text": "30ML",
+          "brand": "AMLOR",
+          "brand_score": 44.44,
+          "dci": "TIMOLOL",
+          "dci_score": 36.36
+        },
+        {
+          "box": [
+            36.0,
+            756.0,
+            66.0,
+            814.0
+          ],
+          "height": 58.0,
+          "rotation": 270,
+          "text": "JUOE",
+          "brand": "UROREC",
+          "brand_score": 60.0,
+          "dci": "IBUPROFEN",
+          "dci_score": 46.15
+        },
+        {
+          "box": [
+            749.1,
+            717.1,
+            841.9,
+            767.9
+          ],
+          "height": 50.8,
+          "rotation": 0,
+          "text": "SPRAY",
+          "brand": "HEXASPRAY",
+          "brand_score": 71.43,
+          "dci": "SPIRAMYCINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            749.1,
+            717.1,
+            841.9,
+            767.9
+          ],
+          "height": 50.8,
+          "rotation": 90,
+          "text": "SPRAY",
+          "brand": "HEXASPRAY",
+          "brand_score": 71.43,
+          "dci": "SPIRAMYCINE",
+          "dci_score": 62.5
+        },
+        {
+          "box": [
+            749.1,
+            717.1,
+            841.9,
+            767.9
+          ],
+          "height": 50.8,
+          "rotation": 180,
+          "text": "INVOIS",
+          "brand": "INOVIA",
+          "brand_score": 66.67,
+          "dci": "INOSINE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            749.1,
+            717.1,
+            841.9,
+            767.9
+          ],
+          "height": 50.8,
+          "rotation": 270,
+          "text": "SARY",
+          "brand": "LOSAR",
+          "brand_score": 66.67,
+          "dci": "LOSARTAN",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            662.0,
+            793.0,
+            782.0,
+            818.0
+          ],
+          "height": 25.0,
+          "rotation": 0,
+          "text": "PROTECTS & PURITIES",
+          "brand": "PECTOLYSE ADULTES",
+          "brand_score": 58.82,
+          "dci": "BROMOCRIPTINE",
+          "dci_score": 53.33
+        },
+        {
+          "box": [
+            662.0,
+            793.0,
+            782.0,
+            818.0
+          ],
+          "height": 25.0,
+          "rotation": 90,
+          "text": "PROTECTS & PURIMES",
+          "brand": "PECTOLYSE ADULTES",
+          "brand_score": 54.55,
+          "dci": "PAROXETINE",
+          "dci_score": 53.85
+        },
+        {
+          "box": [
+            662.0,
+            793.0,
+            782.0,
+            818.0
+          ],
+          "height": 25.0,
+          "rotation": 180,
+          "text": "1 SQUIND @ SCEIOLJ",
+          "brand": "QUINOLOX",
+          "brand_score": 50.0,
+          "dci": "INDACATEROL",
+          "dci_score": 51.85
+        },
+        {
+          "box": [
+            662.0,
+            793.0,
+            782.0,
+            818.0
+          ],
+          "height": 25.0,
+          "rotation": 270,
+          "text": "PROTECATE SHOPP",
+          "brand": "PROSTAM LP",
+          "brand_score": 56.0,
+          "dci": "PROGESTERONE",
+          "dci_score": 51.85
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 71.43
+      },
+      "outcome": "refused"
+    },
+    {
+      "file": "f13.jpg",
+      "true_name": "NONE",
+      "candidates": [
+        {
+          "box": [
+            328.0,
+            371.0,
+            553.0,
+            467.0
+          ],
+          "height": 96.0,
+          "rotation": 0,
+          "text": "RHINO",
+          "brand": "ARHIN",
+          "brand_score": 80.0,
+          "dci": "MORPHINE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            328.0,
+            371.0,
+            553.0,
+            467.0
+          ],
+          "height": 96.0,
+          "rotation": 90,
+          "text": "RHINO",
+          "brand": "ARHIN",
+          "brand_score": 80.0,
+          "dci": "MORPHINE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            328.0,
+            371.0,
+            553.0,
+            467.0
+          ],
+          "height": 96.0,
+          "rotation": 180,
+          "text": "ONTHS",
+          "brand": "BONTALIS",
+          "brand_score": 61.54,
+          "dci": "MONTELUKAST",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            328.0,
+            371.0,
+            553.0,
+            467.0
+          ],
+          "height": 96.0,
+          "rotation": 270,
+          "text": "ONTHS",
+          "brand": "BONTALIS",
+          "brand_score": 61.54,
+          "dci": "MONTELUKAST",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            340.0,
+            440.0,
+            539.0,
+            528.0
+          ],
+          "height": 88.0,
+          "rotation": 0,
+          "text": "WELL",
+          "brand": "ELUDRIL",
+          "brand_score": 54.55,
+          "dci": "ATENOLOL",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            340.0,
+            440.0,
+            539.0,
+            528.0
+          ],
+          "height": 88.0,
+          "rotation": 90,
+          "text": "WELL",
+          "brand": "ELUDRIL",
+          "brand_score": 54.55,
+          "dci": "ATENOLOL",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            340.0,
+            440.0,
+            539.0,
+            528.0
+          ],
+          "height": 88.0,
+          "rotation": 180,
+          "text": "ITEM",
+          "brand": "CITOM",
+          "brand_score": 66.67,
+          "dci": "DILTIAZEM",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            340.0,
+            440.0,
+            539.0,
+            528.0
+          ],
+          "height": 88.0,
+          "rotation": 270,
+          "text": "ITEM",
+          "brand": "CITOM",
+          "brand_score": 66.67,
+          "dci": "DILTIAZEM",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            328.0,
+            923.0,
+            527.0,
+            959.0
+          ],
+          "height": 36.0,
+          "rotation": 0,
+          "text": "MOESTRUCTION NASALE",
+          "brand": "STRUCTOFLEX",
+          "brand_score": 60.0,
+          "dci": "METRONIDAZOLE",
+          "dci_score": 56.25
+        },
+        {
+          "box": [
+            328.0,
+            923.0,
+            527.0,
+            959.0
+          ],
+          "height": 36.0,
+          "rotation": 90,
+          "text": "DESTRICTION NASALE",
+          "brand": "NETROMICINE",
+          "brand_score": 55.17,
+          "dci": "DIMETICONE + GAIAZULENE",
+          "dci_score": 58.54
+        },
+        {
+          "box": [
+            328.0,
+            923.0,
+            527.0,
+            959.0
+          ],
+          "height": 36.0,
+          "rotation": 180,
+          "text": "* OBSTURNS!",
+          "brand": "BISOTENS",
+          "brand_score": 62.5,
+          "dci": "LOSARTAN",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            328.0,
+            923.0,
+            527.0,
+            959.0
+          ],
+          "height": 36.0,
+          "rotation": 270,
+          "text": ":OBSTRUSTURNSALE",
+          "brand": "STRUCTOFLEX",
+          "brand_score": 53.85,
+          "dci": "SERTRALINE",
+          "dci_score": 56.0
+        },
+        {
+          "box": [
+            309.0,
+            1009.0,
+            485.0,
+            1042.0
+          ],
+          "height": 33.0,
+          "rotation": 0,
+          "text": "FORMULE NATURATE",
+          "brand": "FERVEX ADULTE",
+          "brand_score": 55.17,
+          "dci": "TOLNAFTATE",
+          "dci_score": 61.54
+        },
+        {
+          "box": [
+            309.0,
+            1009.0,
+            485.0,
+            1042.0
+          ],
+          "height": 33.0,
+          "rotation": 90,
+          "text": "FORMUR NOTEBOOK",
+          "brand": "FORMOPEN",
+          "brand_score": 52.17,
+          "dci": "FORMOTEROL",
+          "dci_score": 64.0
+        },
+        {
+          "box": [
+            309.0,
+            1009.0,
+            485.0,
+            1042.0
+          ],
+          "height": 33.0,
+          "rotation": 180,
+          "text": "TOTAL ON CHANGE",
+          "brand": "SOTALOL MYLAN",
+          "brand_score": 57.14,
+          "dci": "DEXTROMETHORPHANE",
+          "dci_score": 50.0
+        },
+        {
+          "box": [
+            309.0,
+            1009.0,
+            485.0,
+            1042.0
+          ],
+          "height": 33.0,
+          "rotation": 270,
+          "text": "FORMAN GRAND F",
+          "brand": "CORTEMA GRAS",
+          "brand_score": 61.54,
+          "dci": "FUMARATE DE FER",
+          "dci_score": 55.17
+        },
+        {
+          "box": [
+            329.0,
+            946.0,
+            488.0,
+            977.0
+          ],
+          "height": 31.0,
+          "rotation": 0,
+          "text": "WALLERGIE NASALE",
+          "brand": "ALLERGAMINE",
+          "brand_score": 66.67,
+          "dci": "ARGININE ASPARTATE",
+          "dci_score": 58.82
+        },
+        {
+          "box": [
+            329.0,
+            946.0,
+            488.0,
+            977.0
+          ],
+          "height": 31.0,
+          "rotation": 90,
+          "text": "VALENOIE NASALE",
+          "brand": "VALOXINE",
+          "brand_score": 60.87,
+          "dci": "ADENOSINE",
+          "dci_score": 58.33
+        },
+        {
+          "box": [
+            329.0,
+            946.0,
+            488.0,
+            977.0
+          ],
+          "height": 31.0,
+          "rotation": 180,
+          "text": "SALVSVN SIGNETTY :",
+          "brand": "GALVINE",
+          "brand_score": 52.17,
+          "dci": "ADENOSINE",
+          "dci_score": 48.0
+        },
+        {
+          "box": [
+            329.0,
+            946.0,
+            488.0,
+            977.0
+          ],
+          "height": 31.0,
+          "rotation": 270,
+          "text": "ALLERGE NASALE",
+          "brand": "ALLERGAMINE",
+          "brand_score": 64.0,
+          "dci": "ARGININE ASPARTATE",
+          "dci_score": 56.25
+        }
+      ],
+      "decision": {
+        "status": "refused",
+        "answer": null,
+        "score": 80.0
+      },
+      "outcome": "refused"
+    }
+  ]
+}

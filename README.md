@@ -125,6 +125,38 @@ the baseline (`candidate` field in `results/final_test.json`). A lower threshold
 
 ---
 
+## Version 2 — development results (not a test yet)
+
+**Why a v2:** the v1 analyses showed that TrOCR reads well but YOLO looks at the wrong place (generic name, or nothing),
+and that on all own photos the **brand is the largest text** on the box. v2 was designed from this, with its rules
+committed before any v2 code (`PROTOCOL.md` §11, commit `ff1cdf3`; code `d635872`).
+
+```
+photo ──► CRAFT text detector (EasyOCR) ──► 5 tallest text lines ──► TrOCR at 0°/90°/180°/270°
+      ──► drop readings < 4 characters ──► rapidfuzz ratio vs 2,160 trade names AND 728 generic names (DCI)
+      ──► trade name (score ≥ 88) │ "molecule X, brand not identified" (score ≥ 72) │ REFUSED
+```
+
+**Development results on the 13 own photos** (the v2 thresholds were **chosen on these same photos**, so these numbers
+are optimistic and are **not** a test; `results/dev_v2.json`):
+
+| | v1 (YOLO), same photos | v2 (development) |
+|---|---|---|
+| Correct trade name | 0/8 | **6/8** (95% CI 0.41–0.93) |
+| Correct trade name **or** correct molecule | 0/8 | **7/8** (95% CI 0.53–0.98) |
+| Wrong answers | 0/13 | **0/13** (95% CI 0.00–0.23) |
+| Products not in the list refused | 5/5 | **5/5** |
+
+Per photo: Clamoxyl, Smecta, Allergica, Belifax, Maxilase, Inflamyl → correct trade name (score 100).
+Urpex → "molecule ACICLOVIR, brand not identified" (the brand was not among the readings; the molecule is correct).
+Uciderm Plus → refused (only `PLUS` was read). The 5 products not in the list were refused.
+
+**Honest caveat:** `T_brand = 88` sits just above one negative: Respiwell was read `ALLERIA`, which scores 87.5 against
+`ALLERGICA`. With so few dev photos, the margin is thin. Only a new test on **unseen photos** (≥ 20 new boxes,
+`PROTOCOL.md` §11) can say whether v2 really generalizes. Until then, these are development numbers.
+
+---
+
 ## Field test on own phone photos (v1.1)
 
 Added after v1.0, with rules committed before the run (`PROTOCOL.md` §10, commits `e60bcaa` and `6a522b0`).
@@ -183,6 +215,8 @@ Key commits (`git log --oneline` shows the full order):
 | `7253798` | Final test run, executed once (`results/final_test.json`) |
 | `e60bcaa` | Field test rules (§10): own phone photos, system frozen at v1.0 |
 | `6a522b0` | Field test set frozen (SHA-256 manifest) |
+| `ff1cdf3` | v2 design (§11), before any v2 code |
+| `d635872` | v2 code, before any v2 run |
 
 The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest first and refuses to run twice.
 
