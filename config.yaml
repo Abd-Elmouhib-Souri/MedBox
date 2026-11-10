@@ -12,3 +12,14 @@ short_name_max_len: 3    # names of 3 characters or less are accepted only on an
 max_new_tokens: 32       # TrOCR output length limit (a drug name is short)
 
 threshold: 91          # set by `python -m medbox.evaluate --dev`, then never changed
+
+# ---- v2 (PROTOCOL.md section 11): fixed before any v2 run, except T_brand / T_dci (set once by evaluate_v2 --dev)
+v2:
+  dci_list: data/dci_tn.csv
+  easyocr_langs: [en, fr]
+  top_k: 5                       # the 5 tallest text boxes
+  crop_pad: 0.05
+  rotations: [0, 90, 180, 270]
+  min_chars: 4                   # readings with fewer letters/digits are dropped
+  T_brand: null
+  T_dci: null
