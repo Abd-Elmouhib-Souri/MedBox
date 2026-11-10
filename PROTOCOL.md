@@ -136,3 +136,38 @@ threshold **91**, same code in `medbox/reader.py`. Nothing is tuned on these pho
 - **Run once:** `python -m medbox.evaluate --field` → `results/field_test.json` (pipeline and baseline; same metrics,
   Wilson intervals and decision rules as section 3 and 8). It refuses to run twice.
 - Images stay local by default (they show the author's home); only hashes and ground truth are committed.
+
+## 11. Version 2 (decided 2026-11-10, before any v2 code exists or runs)
+
+**Why (from the v1 analyses):** TrOCR reads well, but the YOLO detector looks at the wrong place: on own photos it
+found nothing on 5 of 8 boxes and framed the generic name (DCI) on the other 3. On all 8 own photos, the brand is the
+largest text on the box. Short OCR fragments get WRatio = 90 (`TAX` in `KETAXOL`), and a single letter matched the
+1-letter trade name `T`.
+
+**Development data:** the 13 field photos (`data/field`, section 10) become the **v2 development set**. v2 is designed
+and its thresholds are chosen on them, so any number on them is a **development result, never a test result**.
+
+**System v2 (all settings fixed now):**
+1. **Text detection:** CRAFT text detector from EasyOCR (version pinned in `requirements.txt`), languages `en` + `fr`,
+   CPU. It finds every text line; YOLO is not used in v2.
+2. **Candidates:** the **5 tallest** text boxes (height in pixels), each cropped with a 5 % margin.
+3. **Reading:** TrOCR (`microsoft/trocr-base-printed`, unchanged) on each crop at **0°, 90°, 180°, 270°**.
+4. **Filter:** readings with fewer than **4** letters or digits after normalization are discarded.
+5. **Matching:** `rapidfuzz.fuzz.ratio` (whole-string similarity, not WRatio) between the normalized reading and
+   (a) the 2,160 trade names, (b) the 728 generic names (DCI column of the same list). Trade names of 3 characters or
+   less: exact match only (unchanged).
+6. **Decision:** best trade-name score ≥ `T_brand` → answer the trade name. Otherwise best DCI score ≥ `T_dci` →
+   answer "molecule X, brand not identified". Otherwise refuse. Ties: the taller text wins.
+7. **Thresholds**, chosen on the dev set with the section 5 rule: `T_brand` = smallest value with 0 wrong trade-name
+   answers; then, with `T_brand` fixed, `T_dci` = smallest value with 0 wrong molecule answers. If none, 100.
+
+**Metrics (section 3, plus):** a molecule answer is **correct** if it equals the DCI listed for the true trade name,
+and **wrong** otherwise; a wrong molecule answer counts as a wrong accept. On "not in list" photos, any trade-name
+or molecule answer is a wrong accept.
+
+**Comparison on dev:** v1 pipeline (YOLO) and v2, same photos, reported side by side as development results.
+
+**Test (not yet available):** at least **20 new own phone photos** of boxes, none of them photographed in the dev set,
+selected with the section 10 eligibility rules, frozen with SHA-256 and committed before the run, evaluated **once**
+with `python -m medbox.evaluate --test-v2`. Until this test exists, the README reports v2 numbers only as
+development results.
