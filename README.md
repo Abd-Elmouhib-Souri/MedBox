@@ -219,6 +219,8 @@ Key commits (`git log --oneline` shows the full order):
 | `6a522b0` | Field test set frozen (SHA-256 manifest) |
 | `ff1cdf3` | v2 design (§11), before any v2 code |
 | `d635872` | v2 code, before any v2 run |
+| `e230aaf` | v2 development run, executed once (thresholds T_brand 88, T_dci 72 written to config) |
+| `9e566d5` | CI: 16 tests on every push; demo uses v2 by default |
 
 The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest first and refuses to run twice.
 
@@ -254,10 +256,11 @@ The weights `weights/best.pt` are trained on CC BY 4.0 data (attribution above).
 ```bash
 conda create -n medbox python=3.11 -y && conda activate medbox
 pip install -r requirements.txt
-python -m pytest -q                      # 11 tests, fake models, < 1 s
-python -m tools.fetch_data               # drug list (checks SHA-256); needs a Kaggle key in ~/.kaggle
-python -m tools.build_drug_list          # -> data/drugs_tn.csv (2,160 names)
-python app.py                            # local demo (Gradio)
+python -m pytest -q                    # 16 tests, fake models (no download)
+python -m tools.fetch_data             # drug list (checks SHA-256); needs a Kaggle key in ~/.kaggle
+python -m tools.build_drug_list        # -> data/drugs_tn.csv (2,160 names)
+python -m tools.build_dci_list         # -> data/dci_tn.csv (728 generic names) + data/brand_dci.csv
+python app.py                          # local demo (Gradio); v2 downloads the CRAFT model on first run
 ```
 
 YOLO training: [`notebooks/train_yolo_kaggle.ipynb`](notebooks/train_yolo_kaggle.ipynb) (Kaggle T4, outputs included).
