@@ -239,9 +239,10 @@ The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest 
 
 1. **Fewer boxes than planned:** 12 eligible boxes instead of 30+ → dev 3 boxes + 2 negatives, test 9 boxes + 5 negatives. Pilot scale.
 2. **No own photos in v1.0.** The dev/test images were collected from the web or are screenshots (checked with EXIF:
-   none comes from the author's phone). Own phone photos were added afterwards as a separate field test (v1.1, above). They are cleaner and much smaller than real phone photos, so the end-to-end result
-   is **not representative of real use**. They are **not redistributed** (copyright); only their SHA-256 hashes and the
-   ground truth are in this repository.
+   none comes from the author's phone). These web images are cleaner and much smaller than real phone photos, so the
+   pilot result is **not representative of real use**. They are **not redistributed** (copyright); only their SHA-256
+   hashes and the ground truth are in this repository. Own phone photos were added afterwards as a separate field test
+   (v1.1, see "Field test on own phone photos").
 3. **Closed list changed** from the Kaggle list (1,639 names, about two years old) to the more recent and complete
    Pharma Tunisie list (2,160 names), before checking the boxes.
 4. **First data audit was wrong** on 14 % of the labels (polygons read as boxes). A corrected audit gives 21 % vertical
