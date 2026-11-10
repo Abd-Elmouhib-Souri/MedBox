@@ -22,6 +22,16 @@ list of 2,160 Tunisian trade names, and the system **refuses** when the match sc
 so the v1 detector looked at the wrong text. v2 was designed from this finding.
 The demo uses v2 by default (v1 selectable).
 
+## Demo
+
+| Molecule recognized, brand not identified | Refused |
+|---|---|
+| ![v2 demo: molecule answer](results/figures/demo_v2.png) | ![v2 demo: refusal](results/figures/demo_refused.png) |
+
+*v2 development version (`python app.py`); examples from the Kaggle test split (CC BY 4.0, see
+[`examples/ATTRIBUTION.md`](examples/ATTRIBUTION.md)). These boxes are not Tunisian, so none of the 3
+examples gives a green trade-name card: the demo shows a molecule answer and a refusal.*
+
 ## v1 results (tested)
 
 | What was measured | Result | Source |
