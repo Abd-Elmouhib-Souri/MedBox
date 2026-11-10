@@ -130,11 +130,11 @@ the baseline (`candidate` field in `results/final_test.json`). A lower threshold
 
 ### What I would change next (decided before any new test)
 
-- Re-train the detector on brand-name boxes (the field test shows this is the main blocker).
-- Refuse OCR readings shorter than 4 characters, before matching.
-- Match against **brand and generic names** (the list has a DCI column), and answer "generic name X" instead of guessing a brand.
-- Re-label the detector data to mark the brand line only; or detect the whole box first, then the name.
-- Also try a 180° rotation (upside-down text seen in the README figure).
+- Re-train the detector on brand-name boxes (the field test shows this is the main blocker). → **Not done:** v2 replaces the detector with CRAFT + tallest text lines instead.
+- Refuse OCR readings shorter than 4 characters, before matching. → **Done in v2** (`min_chars: 4`).
+- Match against **brand and generic names** (the list has a DCI column), and answer "generic name X" instead of guessing a brand. → **Done in v2** (728 generic names, "molecule X" answer).
+- Re-label the detector data to mark the brand line only; or detect the whole box first, then the name. → **Not done.**
+- Also try a 180° rotation (upside-down text seen in the README figure). → **Done in v2.**
 
 ---
 
