@@ -1,5 +1,7 @@
 # MedBox Reader
 
+[![tests](https://github.com/Abd-Elmouhib-Souri/MedBox/actions/workflows/tests.yml/badge.svg)](https://github.com/Abd-Elmouhib-Souri/MedBox/actions/workflows/tests.yml)
+
 **Prototype: read the trade name of a Tunisian medicine from a photo of its box, or refuse.**
 YOLOv8 (PyTorch) finds the drug-name region, TrOCR (Hugging Face) reads it, fuzzy matching compares it with a closed
 list of 2,160 Tunisian trade names, and the system **refuses** when the match score is below a threshold.
