@@ -280,8 +280,11 @@ The dev/test evaluation needs the local images, which are not published.
 
 ## Limits
 
-Small tests (9 web + 8 own boxes, wide intervals) · own photos compressed by WhatsApp · no Arabic · no dosage · closed list ·
-detector trained on non-Tunisian data · TrOCR not fine-tuned.
+**v1:** small tests (9 web + 8 own boxes, wide intervals) · detector trained on non-Tunisian data whose labels often mark the molecule, not the brand.
+
+**v2:** development numbers only (thresholds tuned on the same 13 photos) · `T_brand = 88` sits just above one negative (87.5) · CRAFT + "tallest lines" assumes the brand is the largest text.
+
+**Both:** own photos compressed by WhatsApp · no Arabic · no dosage · closed list (a drug not in the list cannot be recognized) · TrOCR not fine-tuned.
 
 ## Licence
 
