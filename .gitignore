@@ -231,3 +231,4 @@ data/test/*.jpg
 __pycache__/
 *.pyc
 data/field/*.jpg
+data/test_v2/*.jpg
