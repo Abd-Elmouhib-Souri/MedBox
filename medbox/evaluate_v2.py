@@ -1,7 +1,7 @@
 """Evaluation of MedBox v2 (PROTOCOL.md section 11).
 
     python -m medbox.evaluate_v2 --dev    # 13 dev photos (data/field): choose T_brand then T_dci (once) -> config.yaml
-    python -m medbox.evaluate_v2 --test   # future new photos (data/test_v2): run ONCE (not available yet)
+    python -m medbox.evaluate_v2 --test   # independent test (data/test_v2, PROTOCOL.md §12): fixed thresholds, ONCE
 
 Numbers from --dev are DEVELOPMENT results (thresholds are chosen on these photos), never test results.
 """
@@ -114,12 +114,80 @@ def run_dev() -> None:
     print("written: results/dev_v2.json and config.yaml  (DEVELOPMENT results, not a test)")
 
 
-def run_test() -> None:
-    if (RESULTS / "test_v2.json").exists():
-        raise SystemExit("results/test_v2.json already exists: the v2 test is run ONCE.")
-    if not Path("data/test_v2_manifest.sha256").exists():
-        raise SystemExit("No v2 test set yet (PROTOCOL.md §11): photograph >= 20 new boxes first.")
-    raise SystemExit("v2 test runner: to be enabled with the new test set (same rules as --dev, thresholds fixed).")
+MARGIN_ZONE = (85, 88)          # PROTOCOL.md §12: thin-margin zone seen on dev, reported separately
+
+
+def v1_decision(v1_reader, image) -> dict:
+    """v1 pipeline (YOLO, threshold 91 from config.yaml) mapped to the v2 decision format, so outcome() applies."""
+    r = v1_reader.identify(image, use_detector=True)
+    return {"status": "brand" if r["status"] == "ok" else "refused", "answer": r["name"],
+            "score": r["score"], "ocr_text": r["ocr_text"]}
+
+
+def run_test(v2_reader: ReaderV2 | None = None, v1_reader=None, cfg: dict | None = None,
+             manifest: Path = Path("data/test_v2_manifest.sha256"), truth_csv: str = "data/test_v2_truth.csv",
+             folder: Path = Path("data/test_v2")) -> dict:
+    """PROTOCOL.md §12: frozen photos, FIXED thresholds (read, never written), v2 and v1 on the same photos, ONCE.
+
+    Readers and cfg can be injected (tests use fakes); by default the real models and config.yaml are used.
+    """
+    out_path = RESULTS / "test_v2.json"
+    if out_path.exists():
+        raise SystemExit(f"{out_path} already exists: the v2 test is run ONCE (PROTOCOL.md §12).")
+    if not Path(manifest).exists():
+        raise SystemExit(f"No frozen v2 test set ({manifest}): run tools.test_v2_set and commit it first.")
+    cfg = cfg or load_v2_config()
+    t_b, t_d = cfg["T_brand"], cfg["T_dci"]
+    if t_b is None or t_d is None:
+        raise SystemExit("v2 thresholds missing in config.yaml: they must come from the dev run (§11).")
+    check_manifest(Path(manifest))                                  # refuses if any frozen file changed
+    truth, dci_of = pd.read_csv(truth_csv, keep_default_na=False), truth_dci()
+
+    if v2_reader is None:
+        v2_reader = ReaderV2(cfg)
+    if v1_reader is None:
+        from medbox.reader import Reader, load_config               # real v1 (YOLO), loaded only here
+        v1_reader = Reader(load_config())
+
+    print(f"TEST v2 (once): {len(truth)} photos, T_brand={t_b}, T_dci={t_d} (fixed, not tuned)")
+    rows = []
+    for f, t in zip(truth["file"], truth["true_name"]):
+        with Image.open(Path(folder) / f) as im:
+            im = im.convert("RGB")
+            cands = v2_reader.candidates(im)
+            dec = ReaderV2.decide(cands, t_b, t_d)                  # fixed thresholds
+            v1 = v1_decision(v1_reader, im)
+        best_b = ReaderV2.best(cands, "brand")
+        row = {"file": f, "true_name": t,
+               "decision": {k: dec[k] for k in ("status", "answer", "score")},
+               "outcome": outcome(dec, t, dci_of),
+               "best_brand_score": best_b["brand_score"] if best_b else 0.0,
+               "v1": {**v1, "outcome": outcome(v1, t, dci_of)},
+               "candidates": cands}
+        rows.append(row)
+        print(f"  {f:8} truth={t:14} v2 -> {dec['status']:9} {str(dec['answer']):28} [{row['outcome']}]"
+              f"   v1 -> {v1['status']:8} [{row['v1']['outcome']}]")
+
+    lo, hi = MARGIN_ZONE
+    margin = [{"file": r["file"], "true_name": r["true_name"], "best_brand_score": r["best_brand_score"],
+               "outcome": r["outcome"]} for r in rows if lo <= r["best_brand_score"] < hi]
+    v1_rows = [{"true_name": r["true_name"], "outcome": r["v1"]["outcome"]} for r in rows]
+    out = {"date_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"), "git_commit": git_commit(),
+           "versions": versions(), "note": "INDEPENDENT TEST (PROTOCOL.md §12): thresholds fixed, run once",
+           "T_brand": t_b, "T_dci": t_d,
+           "summary_v2": summarize(rows), "summary_v1_same_photos": summarize(v1_rows),
+           "margin_zone_85_88": margin,
+           "decision_rule": {"wrong_answers_v2": sum(r["outcome"] == "wrong" for r in rows),
+                             "publish_as_v2.0": sum(r["outcome"] == "wrong" for r in rows) <= 1},
+           "rows": rows}
+    RESULTS.mkdir(exist_ok=True)
+    out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
+    print("\nv2:", {k: v["text"] for k, v in out["summary_v2"].items()})
+    print("v1:", {k: v["text"] for k, v in out["summary_v1_same_photos"].items()})
+    print("margin zone 85-88:", margin)
+    print("decision rule:", out["decision_rule"])
+    print(f"written: {out_path}  (config.yaml not modified)")
+    return out
 
 
 if __name__ == "__main__":

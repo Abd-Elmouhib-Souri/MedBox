@@ -46,3 +46,47 @@ def test_outcome_rules():
     assert outcome({"status": "brand", "answer": "KETAXOL"}, "URPEX", dci_of) == "wrong"
     assert outcome({"status": "molecule", "answer": "ACICLOVIR"}, "NONE", dci_of) == "wrong"
     assert outcome({"status": "refused", "answer": None}, "NONE", dci_of) == "refused"
+
+
+# ---- v2 independent test runner (PROTOCOL.md §12) --------------------------------------------------------------
+import hashlib
+
+import pytest
+
+from medbox.evaluate_v2 import run_test
+
+CFG_TEST = {**CFG, "T_brand": 88, "T_dci": 72}                      # fixed thresholds, as in config.yaml
+
+
+class FakeV1:
+    """v1 reader stand-in: always refuses (enough to check the runner, no YOLO needed)."""
+    def identify(self, image, use_detector=True):
+        return {"status": "refused", "name": None, "score": 0.0, "ocr_text": ""}
+
+
+def test_run_test_refuses_without_manifest(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)                                    # empty folder: no frozen test set
+    with pytest.raises(SystemExit):
+        run_test(v2_reader=reader([], []), v1_reader=FakeV1(), cfg=CFG_TEST)
+
+
+def test_run_test_runs_once_and_never_writes_config(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "config.yaml").write_text("T_brand: 88\n", encoding="utf-8")   # must stay byte-identical
+    data = tmp_path / "data"
+    (data / "test_v2").mkdir(parents=True)
+    (data / "brand_dci.csv").write_text("name,dci\nCLAMOXYL,AMOXICILLINE\n", encoding="utf-8")
+    IMG.save(data / "test_v2" / "v01.jpg")
+    (data / "test_v2_truth.csv").write_text("file,true_name,group\nv01.jpg,CLAMOXYL,in_list\n", encoding="utf-8")
+    files = ["data/test_v2/v01.jpg", "data/test_v2_truth.csv"]
+    (data / "test_v2_manifest.sha256").write_text(
+        "".join(f"{hashlib.sha256((tmp_path / p).read_bytes()).hexdigest()}  {p}\n" for p in files), encoding="utf-8")
+
+    before = (tmp_path / "config.yaml").read_bytes()
+    out = run_test(v2_reader=reader([(0, 0, 100, 40)], ["CLAMOXYL"]), v1_reader=FakeV1(), cfg=CFG_TEST)
+    assert (tmp_path / "config.yaml").read_bytes() == before        # thresholds read, never written
+    assert out["summary_v2"]["brand_correct"]["k"] == 1
+    assert out["summary_v1_same_photos"]["brand_correct"]["k"] == 0
+    assert (tmp_path / "results" / "test_v2.json").exists()
+    with pytest.raises(SystemExit):                                # second run refused
+        run_test(v2_reader=reader([(0, 0, 100, 40)], ["CLAMOXYL"]), v1_reader=FakeV1(), cfg=CFG_TEST)
