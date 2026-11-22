@@ -1,0 +1,39 @@
+photo,true_name,source_file,group,note
+v01,NONE,WhaApp Image 2026-11-21 at 12.20.00.jpeg,excluded,already seen (v2 dev: INFLAMYL) and name only in Arabic
+v02,BROMISOL,Whatpp Image 2026-11-21 at 12.15.43.jpeg,in_list,
+v03,AURICULARUM,WhatsA Image 2026-11-21 at 12.16.39.jpeg,in_list,
+v04,NONE,WhatsA Image 2026-11-21 at 12.18.43.jpeg,excluded,only variants in the list (ENKEPHAL NOURRISSON / ENFANT)
+v05,NONE,WhatsApImage 2026-11-21 at 12.18.35.jpeg,not_in_list,Laxavit
+v06,DESLOR,WhatsApmage 2026-11-21 at 12.15.55.jpeg,in_list,
+v07,NONE,WhatsApp Iage 2026-11-20 at 21.34.39.jpeg,excluded,only variants in the list (PECTOLYSE ADULTE SANS SUCRE...)
+v08,NONE,WhatsApp Iage 2026-11-21 at 12.14.49.jpeg,not_in_list,Rinex
+v09,HEXASPRAY,WhatsApp Ige 2026-11-21 at 12.19.32.jpeg,in_list,
+v10,RISOMAX,WhatsApp Imag 2026-11-21 at 12.14.33.jpeg,in_list,
+v11,NONE,WhatsApp Imag026-11-21 at 12.17.29.jpeg,excluded,only variants in the list (TUSSIPAX ADULTE / ENFANT)
+v12,TRAMADIS,WhatsApp Image 2026-11- at 12.16.46.jpeg,in_list,
+v13,RIVA,WhatsApp Image 2026-11-20 at 21.34.38.jpeg,in_list,
+v14,DIVINUS,WhatsApp Image 2026-11-20 at 21.34.39.jpeg,in_list,
+v15,NONE,WhatsApp Image 2026-11-20 at 21.3439.jpeg,not_in_list,Flamilase
+v16,NONE,WhatsApp Image 2026-11-20 at 21.39.jpeg,not_in_list,Aminofer
+v17,NONE,WhatsApp Image 2026-11-20 at 2134.39.jpeg,excluded,exact duplicate of n14 (same SHA-256)
+v18,NONE,WhatsApp Image 2026-11-21 at 118.29.jpeg,not_in_list,Bucco spray
+v19,NONE,WhatsApp Image 2026-11-21 at 119.12.jpeg,excluded,already seen (Helix: not-in-list product of the field test)
+v20,NONE,WhatsApp Image 2026-11-21 at 12..15.jpeg,not_in_list,Klorex
+v21,GASTRAL,WhatsApp Image 2026-11-21 at 12.16.18peg.jpeg,in_list,
+v22,NONE,WhatsApp Image 2026-11-21 at 126.23.jpeg,excluded,already seen (v2 dev: ALLERGICA)
+v23,NOVAMOX,WhatsApp Image 2026-11-21 at 128.08.jpeg,in_list,
+v24,NONE,WhatsApp Image 2026-11-21 at 129.01.jpeg,excluded,name only in Arabic (Clavor)
+v25,CARBOSYLANE,WhatsApp Image 2026-11-21 at2.16.51.jpeg,in_list,
+v26,NONE,WhatsApp Image 2026-11-21 at2.19.25.jpeg,not_in_list,Naso Care
+v27,NONE,WhatsApp Image 26-11-21 at 12.16.32.jpeg,not_in_list,Pharyndol
+v28,NONE,WhatsApp Imge 2026-11-20 at 21.34.39.jpeg,excluded,"written 'Bi Clavor' on the box, 'BICLAVOR' in the list (strict rule)"
+v29,CLAVUMOX,WhatsApp Imge 2026-11-21 at 12.14.55.jpeg,in_list,
+v30,ALERGOSONE,WhatsApp age 2026-11-21 at 12.15.06.jpeg,in_list,
+v31,NONE,WhatsApp age 2026-11-21 at 12.19.07.jpeg,not_in_list,Aquamer
+v32,NONE,WhatsApp age 2026-11-21 at 12.19.18.jpeg,excluded,only variants in the list (UPSA C CALCIUM)
+v33,ALLERGUS,WhatsApp mage 2026-11-21 at 12.15.01.jpeg,in_list,
+v34,NONE,Whatsp Image 2026-11-21 at 12.19.41.jpeg,not_in_list,Vixpro
+v35,EMPERIAL,Whatspp Image 2026-11-20 at 21.34.39.jpeg,in_list,
+v36,VERAX BLU,WhsApp Image 2026-11-21 at 12.15.49.jpeg,in_list,
+v37,GALAMOX,WhtsApp Image 2026-11-21 at 12.15.37.jpeg,in_list,
+v38,NONE,WtsApp Image 2026-11-21 at 12.17.35.jpeg,not_in_list,Arthrogine

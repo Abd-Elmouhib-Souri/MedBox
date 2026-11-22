@@ -171,3 +171,43 @@ or molecule answer is a wrong accept.
 selected with the section 10 eligibility rules, frozen with SHA-256 and committed before the run, evaluated **once**
 with `python -m medbox.evaluate --test-v2`. Until this test exists, the README reports v2 numbers only as
 development results.
+
+## 12. v2 independent test (decided 2026-11-22, before any system output on these photos)
+
+**System frozen:** v2 exactly as in section 11 and tag `v2.0-dev` (commit `c9b82ac`): same code in
+`medbox/reader_v2.py`, same closed lists, **same thresholds `T_brand = 88` and `T_dci = 72`**. Nothing is tuned on
+these photos. The v1 pipeline (YOLO, threshold 91, unchanged) is run on the same photos for comparison.
+
+**Images:** 38 photos taken by the author with his phone on 2026-11-20 and 2026-11-21, of medicine boxes at home,
+held in the hand (normal home light), sent through WhatsApp (720 × 1280 or 1200 × 1600 px, no EXIF). They were
+looked at by a human only, to apply the eligibility rules below; no model was run on them.
+
+**Eligibility (section 10 rules, unchanged), listed photo by photo in `data/test_v2_map.csv`:**
+- **in list (positives):** trade name printed in Latin script on the photographed face is exactly a name of
+  `data/drugs_tn.csv` after normalization → **17 photos**;
+- **not in list:** no list name starts with the printed trade name → `true_name = NONE` → **11 photos**;
+- **excluded and reported (10 photos):**
+  - already seen by the project: Allergica and Inflamyl (v2 dev photos), Helix (not-in-list product of the field test);
+  - trade name printed only in Arabic: Inflamyl, Clavor;
+  - brand present in the list only as other variants: Enkephal, Pectolyse, Tussipax, UPSA-C;
+  - name written differently in the list: "Bi Clavor" on the box, `BICLAVOR` in the list (strict rule, as for Tussidane);
+  - exact duplicate file of another photo (same SHA-256): one Divinus photo.
+
+**Deviation 3 (declared now, before the run):** section 11 asked for at least 20 boxes in the list; this test has
+**17**. The author chose to run the test with 17 rather than add more photos. With n = 17 the intervals are wide;
+the README says so next to the numbers.
+
+**Processing and freeze:** same as section 10 (`tools/test_v2_set.py`: EXIF orientation, longest side ≤ 2048 px,
+JPEG quality 95, no metadata), images in `data/test_v2/` (local only, not committed), ground truth
+`data/test_v2_truth.csv`, SHA-256 manifest `data/test_v2_manifest.sha256`, committed before the run.
+
+**Metrics (section 11):** trade name correct k/17; trade name or molecule correct k/17; **wrong answers k/28
+(main metric)**; not-in-list refused k/11; Wilson 95 % intervals. Same metrics for the v1 pipeline on the same photos.
+Reported separately: every wrong answer or refused negative whose best trade-name score is between 85 and 88
+(the thin-margin zone seen on dev).
+
+**Decision rule (fixed now):** v2 is published as release `v2.0` (Latest) only if **wrong answers ≤ 1**.
+Otherwise the result is published as it is, as release `v2.0-test`, and v2 stays a development version.
+
+**Run once:** `python -m medbox.evaluate_v2 --test` (this replaces the command name written in section 11) →
+`results/test_v2.json`. It checks the manifest, never writes `config.yaml`, and refuses to run twice.
