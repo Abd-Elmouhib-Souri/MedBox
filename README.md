@@ -16,11 +16,12 @@ list of 2,160 Tunisian trade names, and the system **refuses** when the match sc
 | Version | What it does | Result | Status |
 |---|---|---|---|
 | **v1** (`v1.0`, `v1.1`) | YOLOv8n finds the name line → TrOCR reads it → fuzzy match on 2,160 Tunisian trade names, or refuse | **0 wrong answers on 27 frozen test images**, but **0 drugs recognized** (it refused everything) | Tested, frozen |
-| **v2** (`v2.0-dev`) | CRAFT text detection on the tallest lines → TrOCR → brand **or molecule** answer, or refuse | **6/8 brands, 7/8 brand or molecule, 0/13 wrong** on dev photos — thresholds were tuned on these photos, so this is **not** a test | Independent test pre-registered, pending |
+| **v2** (`v2.0-test`) | CRAFT text detection on the tallest lines → TrOCR → brand **or molecule** answer, or refuse | **Independent test on 28 new own photos: 11/17 brands, 13/17 brand or molecule, 3/28 wrong** (dev photos: 6/8, 0/13 wrong) | Tested once; decision rule not met (3 wrong > 1): stays a development version |
 
 **Main finding:** the error analysis showed that the training labels often mark the **molecule** line, not the **brand**,
 so the v1 detector looked at the wrong text. v2 was designed from this finding.
-The demo uses v2 by default (v1 selectable).
+On new photos, v2 recognizes far more boxes than v1 (13/17 vs 1/17, brand or molecule) but gives 3 wrong answers:
+see "Version 2 — independent test". The demo uses v2 by default (v1 selectable).
 
 ## Demo
 
@@ -178,7 +179,7 @@ The system was **not changed**: same weights, same list, same threshold 91. Run 
 
 ---
 
-## Version 2 — development results (not a test yet)
+## Version 2 — development results
 
 **Why a v2:** the v1 analyses showed that TrOCR reads well but YOLO looks at the wrong place (generic name, or nothing),
 and that on all own photos the **brand is the largest text** on the box. v2 was designed from this, with its rules
@@ -206,7 +207,45 @@ Uciderm Plus → refused (only `PLUS` was read). The 5 products not in the list 
 
 **Honest caveat:** `T_brand = 88` sits just above one negative: Respiwell was read `ALLERIA`, which scores 87.5 against
 `ALLERGICA`. With so few dev photos, the margin is thin. Only a new test on **unseen photos** (≥ 20 new boxes,
-`PROTOCOL.md` §11) can say whether v2 really generalizes. Until then, these are development numbers.
+`PROTOCOL.md` §11) can say whether v2 really generalizes: it is reported in the next section.
+
+## Version 2 — independent test (`PROTOCOL.md` §12)
+
+Rules, photo-by-photo eligibility and the frozen set were committed **before** the run (`5352f95`, `ad9aa3a`; runner
+`57186c3`). Run once on 2026-11-22 (`results/test_v2.json`, commit `9d9b813`). 38 new own phone photos (2026-11-20/21,
+held in the hand, sent through WhatsApp, 720 × 1280 or 1200 × 1600): **17 boxes in the list, 11 products not in the
+list, 10 excluded** with their reason (`data/test_v2_map.csv`: already seen by the project, name only in Arabic, only
+other variants in the list, different spelling, duplicate). Thresholds **fixed** (`T_brand` 88, `T_dci` 72), nothing tuned.
+
+| | v1 (YOLO), same photos | v2 on dev (13 photos, thresholds tuned on them) | **v2 independent test (28 new photos)** |
+|---|---|---|---|
+| Correct trade name | 1/17 (95% CI 0.01–0.27) | 6/8 | **11/17** (95% CI 0.41–0.83) |
+| Correct trade name **or** molecule | 1/17 (95% CI 0.01–0.27) | 7/8 | **13/17** (95% CI 0.53–0.90) |
+| Wrong answers | 1/28 (95% CI 0.01–0.18) | 0/13 | **3/28** (95% CI 0.04–0.27) |
+| Products not in the list refused | 11/11 | 5/5 | **9/11** (95% CI 0.52–0.95) |
+
+**Decision rule (fixed in §12 before the run): not met.** v2 gave 3 wrong answers (more than 1), so it is released as
+`v2.0-test`, not `v2.0`, and stays a development version. The gap between dev and test (0/13 → 3/28 wrong answers) is
+exactly what a separate test is for: thresholds chosen on 13 photos were optimistic.
+
+### Error analysis (v2 test, `results/test_v2.json`)
+
+| Photo | Truth | v2 answer | What happened |
+|---|---|---|---|
+| Bromisol | BROMISOL | trade name `BROMHEXINE` (100) — **wrong** | The tallest line was read `BROMISOLE` → BROMISOL at 94.1, above 88: the right answer was there. But the molecule line `BROMHEXINE` is **also a trade name** in the list and scored 100. The decision takes the highest score, not the tallest text, so the molecule beat the brand. v1 gave the same wrong answer. |
+| Rinex (not in list) | NONE | trade name `RANEXA` (90.9) — **wrong** | `RINEX` was read `RANEX`, one letter from the 6-letter name RANEXA. On short names one OCR error is enough to pass 88. |
+| Arthrogine (not in list) | NONE | molecule `ATROPINE` (82.4) — **wrong** | At 270° the name was read `ARTROSINE` → generic name ATROPINE at 82.4, above `T_dci` = 72: too permissive for products outside the list. |
+| Deslor | DESLOR | refused | The tall boxes kept by CRAFT were handwriting and background; TrOCR "read" receipt words (`PRICE`, `DISCOUNT`, `INVOICE`). |
+| Risomax | RISOMAX | refused (85.7) | Read `RISONAX`: in the thin-margin zone 85–88 reported by §12, so refused. |
+| Verax Blu | VERAX BLU | refused (80) | The name is printed on two lines (`VERAX` / `blu`); no reading contains the full name. |
+| Riva, Gastral | RIVA, GASTRAL | molecule — correct | Read `RIVA20` / `GASTRAL20`: the dosage is glued to the name, so it is not removed (80 and 87.5, below 88); the molecule line answered instead. |
+
+**What this teaches** (changes for a future v3, which would need a new test):
+- when two different trade names pass the threshold, prefer the taller text or refuse (Bromisol);
+- split digits glued to a name before matching (`RIVA20` → `RIVA`);
+- stricter thresholds for short names and for molecule answers (Rinex, Arthrogine);
+- `trocr-base-printed` was fine-tuned on receipts: on handwriting or background it invents receipt words (`AMOUNT`,
+  `TOTAL`, `INVOICE` appear in many candidates). A text / no-text check before matching would remove them.
 
 ---
 
@@ -242,6 +281,10 @@ Key commits (`git log --oneline` shows the full order):
 | `d635872` | v2 code, before any v2 run |
 | `e230aaf` | v2 development run, executed once (thresholds T_brand 88, T_dci 72 written to config) |
 | `9e566d5` | CI: 16 tests on every push; demo uses v2 by default |
+| `5352f95` | v2 independent test rules (§12) and photo-by-photo eligibility, before any run |
+| `ad9aa3a` | v2 test set frozen (28 photos, SHA-256 manifest) |
+| `57186c3` | v2 test runner (fixed thresholds, runs once), before the run |
+| `9d9b813` | v2 independent test, executed once (`results/test_v2.json`) |
 
 The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest first and refuses to run twice.
 
@@ -257,6 +300,8 @@ The final run (`python -m medbox.evaluate --final`) checks the SHA-256 manifest 
    Pharma Tunisie list (2,160 names), before checking the boxes.
 4. **First data audit was wrong** on 14 % of the labels (polygons read as boxes). A corrected audit gives 21 % vertical
    name boxes. Training was not affected (Ultralytics converts polygons to boxes).
+5. **v2 test with 17 boxes in the list instead of 20** (`PROTOCOL.md` §12, deviation 3, decided before the run):
+   38 new photos gave 17 eligible boxes after the section 10 rules; the author chose to run with 17. Intervals are wide.
 
 ---
 
@@ -292,7 +337,7 @@ The dev/test evaluation needs the local images, which are not published.
 
 **v1:** small tests (9 web + 8 own boxes, wide intervals) · detector trained on non-Tunisian data whose labels often mark the molecule, not the brand.
 
-**v2:** development numbers only (thresholds tuned on the same 13 photos) · `T_brand = 88` sits just above one negative (87.5) · CRAFT + "tallest lines" assumes the brand is the largest text.
+**v2:** tested once on 28 new photos with only 17 boxes in the list (wide intervals) · 3 wrong answers: the highest score wins over the tallest text, and short names and molecule answers pass too easily · fails on handwriting, two-line names and dosages glued to the name.
 
 **Both:** own photos compressed by WhatsApp · no Arabic · no dosage · closed list (a drug not in the list cannot be recognized) · TrOCR not fine-tuned.
 
